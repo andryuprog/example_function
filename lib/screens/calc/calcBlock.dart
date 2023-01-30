@@ -63,10 +63,11 @@ class CalcBlock {
 
     rep.insertOperationDb(HistoryDb(
         operation: history,
-        time: DateFormat('yyyy - MMMM - dd HH:mm:ss').format(DateTime.now())));
+        time: DateFormat('yyyy - MMMM - dd HH:mm:ss').format(DateTime.now()), isProgress: false));
 
     return result;
   }
 }
 
 enum Operations { plus, subtract, multiply, divide }
+

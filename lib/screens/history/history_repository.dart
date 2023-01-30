@@ -1,11 +1,9 @@
 import 'package:my_calculate/db/database.dart';
 import 'package:sqflite/sqflite.dart';
-
 import '../../model/history_db.dart';
 
 class HistoryRepository{
 
-  // late DBProvider dataB ;
 
 
   //READ
