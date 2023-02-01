@@ -1,41 +1,25 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:my_calculate/api/weather_api.dart';
+import 'package:my_calculate/screens/history/weather_repository.dart';
 import 'package:my_calculate/screens/history/weather_wrapper.dart';
+import '../../api/weather_api.dart';
+import '../../model/history_db.dart';
 import '../../widgets/temp_view.dart';
 import 'history_block.dart';
 import 'history_repository.dart';
 import 'weather_block.dart';
-import 'weather_repository.dart';
 
-class TwoPages extends StatefulWidget {
-  const TwoPages({Key? key}) : super(key: key);
+class TwoPages extends StatelessWidget {
+ TwoPages({Key? key}) : super(key: key);
 
-  @override
-  State<TwoPages> createState() => TwoPagesState();
-}
+ HistoryBlock historyDb = HistoryBlock(HistoryRepository())..getOperationList();
+ WeatherBlockH weather = WeatherBlockH(WeatherRepository(WeatherApi()))..getWeatherObject();
 
-class TwoPagesState extends State<TwoPages> {
+ Future initStateOperationsList() async {
+   historyDb.operationList = await historyDb.getOperationList();
+ }
 
-
-   HistoryBlock historyDb = HistoryBlock(HistoryRepository());
-  late WeatherBlockH weather;
-
-  @override
-  void initState() {
-    super.initState();
-    weather = WeatherBlockH(WeatherRepository(WeatherApi()))
-      ..getWeatherObject();
-    historyDb = HistoryBlock(HistoryRepository())..getOperationList();
-    initStateOperationsList();
-  }
-
-  Future initStateOperationsList() async {
-    historyDb.operationList = await historyDb.getOperationList();
-    setState(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,41 +90,26 @@ class TwoPagesState extends State<TwoPages> {
                   )),
               Expanded(
                 flex: 70,
-                child: StreamBuilder(
+                child: StreamBuilder<List<HistoryDb>>(
                     stream: historyDb.streamHistoryController.stream,
                     builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        // if (snapshot.data!.isProgress) {
-                        //   return const SpinKitSpinningLines(color: Colors.white);
-                        // }
-                        // if (snapshot.data!.error != null) {
-                        //   return Center(
-                        //     child: Text(
-                        //       snapshot.data!.error!,
-                        //       style: const TextStyle(
-                        //         fontSize: 20,
-                        //         color: Colors.white,
-                        //       ),
-                        //     ),
-                        //   );
-                        // }
-                      }
+                     List<HistoryDb>? operationList = snapshot.data;
                       return ListView.builder(
                         padding: const EdgeInsets.all(20.0),
-                        itemCount: historyDb.operationList.length,
+                        itemCount: operationList?.length,
                         itemBuilder: (context, index) => Card(
                           color:
-                              getChangeColor(historyDb.operationList[index].operation),
+                              getChangeColor(operationList?[index].operation),
                           elevation: 20,
                           shadowColor: Colors.white,
                           margin: const EdgeInsets.symmetric(vertical: 10),
                           child: ListTile(
                             title: Text(
-                              "${historyDb.operationList[index].time}",
+                              "${operationList?[index].time}",
                               style: const TextStyle(fontSize: 20),
                             ),
                             subtitle: Text(
-                              "${historyDb.operationList[index].operation}",
+                              "${operationList?[index].operation}",
                             ),
                             leading: const Icon(
                               Icons.access_alarm_outlined,
@@ -150,9 +119,9 @@ class TwoPagesState extends State<TwoPages> {
                             trailing: IconButton(
                               icon: const Icon(Icons.delete, size: 40),
                               onPressed: () {
-                                historyDb.dell(historyDb.operationList[index].id);
-                                 initStateOperationsList();
-                                setState(() {});
+                                historyDb.dell(operationList?[index].id);
+
+                                // initStateOperationsList();
                               },
                             ),
                             onTap: () {},

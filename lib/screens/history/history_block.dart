@@ -7,8 +7,8 @@ import 'history_wrapper.dart';
 class HistoryBlock {
   StreamController<List<HistoryDb>> streamHistoryController = StreamController();
 
-  HistoryRepository repo = HistoryRepository();
-  HistoryBlock(this.repo);
+  HistoryRepository repo;
+  HistoryBlock(this.repo){getOperationList();}
   List<HistoryDb> operationList = [] ;
 
   void dell(dell) async {

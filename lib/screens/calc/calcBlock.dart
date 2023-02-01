@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:intl/intl.dart';
 import '../../model/history_db.dart';
 import '../history/history_repository.dart';
@@ -10,8 +12,14 @@ class CalcBlock {
   String historyDatabase = '';
   bool isProgress = false;
   bool isClear = false;
+  String textToDisplay = '';
   HistoryRepository rep = HistoryRepository();
 
+  StreamController <String> streamCalcController = StreamController();
+
+  void addCalcController() {
+    streamCalcController.sink.add(textToDisplay);
+  }
 
 
   void plus(firstVal) {
@@ -37,7 +45,7 @@ class CalcBlock {
   String calc(secondVal) {
     String? result;
 
-    switch (operation!) {
+    switch (operation) {
       case Operations.plus:
         result = "${firstValue + int.parse(secondVal)}";
         history = '$firstValue + $secondVal = $result';
@@ -66,6 +74,9 @@ class CalcBlock {
         time: DateFormat('yyyy - MMMM - dd HH:mm:ss').format(DateTime.now()), isProgress: false));
 
     return result;
+  }
+  void dispose() {
+    streamCalcController.close();
   }
 }
 
