@@ -17,7 +17,8 @@ class CalcBlock {
 
   StreamController <String> streamCalcController = StreamController();
 
-  void addCalcController() {
+  void addCalcController(String val) {
+    textToDisplay = textToDisplay + val;
     streamCalcController.sink.add(textToDisplay);
   }
 

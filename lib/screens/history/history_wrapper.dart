@@ -1,15 +1,17 @@
 // import '../../model/history_db.dart';
 //
-// class HistoryWrapper {
+ import 'package:my_calculate/screens/history/history_block.dart';
+
+class HistoryWrapper {
 //
-//   HistoryDb? objectHistory;
-//   String? error;
-//   bool isProgress = false;
+   HistoryBlock? dellHistoryDb;
+  String? error;
+  bool isProgress = false;
 //
-//   HistoryWrapper({
-//     this.objectHistory,
-//     required this.isProgress,
-//     this.error});
+  HistoryWrapper({
+    this.dellHistoryDb,
+    required this.isProgress,
+    this.error});
 //
 //
-// }
+ }

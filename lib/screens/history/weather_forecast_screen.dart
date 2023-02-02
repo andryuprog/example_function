@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:my_calculate/screens/history/history_wrapper.dart';
 import 'package:my_calculate/screens/history/weather_repository.dart';
 import 'package:my_calculate/screens/history/weather_wrapper.dart';
 import '../../api/weather_api.dart';
@@ -93,41 +94,48 @@ class TwoPages extends StatelessWidget {
                 child: StreamBuilder<List<HistoryDb>>(
                     stream: historyDb.streamHistoryController.stream,
                     builder: (context, snapshot) {
-                     List<HistoryDb>? operationList = snapshot.data;
-                      return ListView.builder(
-                        padding: const EdgeInsets.all(20.0),
-                        itemCount: operationList?.length,
-                        itemBuilder: (context, index) => Card(
-                          color:
-                              getChangeColor(operationList?[index].operation),
-                          elevation: 20,
-                          shadowColor: Colors.white,
-                          margin: const EdgeInsets.symmetric(vertical: 10),
-                          child: ListTile(
-                            title: Text(
-                              "${operationList?[index].time}",
-                              style: const TextStyle(fontSize: 20),
-                            ),
-                            subtitle: Text(
-                              "${operationList?[index].operation}",
-                            ),
-                            leading: const Icon(
-                              Icons.access_alarm_outlined,
-                              size: 40,
-                              color: Colors.white,
-                            ),
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete, size: 40),
-                              onPressed: () {
-                                historyDb.dell(operationList?[index].id);
+                      if (snapshot.data != null) {
+                        List<HistoryDb>? operationList = snapshot.data;
+                        return ListView.builder(
+                          padding: const EdgeInsets.all(20.0),
+                          itemCount: operationList?.length,
+                          itemBuilder: (context, index) =>
+                              Card(
+                                color:
+                                getChangeColor(operationList?[index].operation),
+                                elevation: 20,
+                                shadowColor: Colors.white,
+                                margin: const EdgeInsets.symmetric(
+                                    vertical: 10),
+                                child: ListTile(
+                                  title: Text(
+                                    "${operationList?[index].time}",
+                                    style: const TextStyle(fontSize: 20),
+                                  ),
+                                  subtitle: Text(
+                                    "${operationList?[index].operation}",
+                                  ),
+                                  leading: const Icon(
+                                    Icons.access_alarm_outlined,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  trailing: IconButton(
+                                    icon: const Icon(Icons.delete, size: 40),
+                                    onPressed: () {
+                                      historyDb.dell(operationList?[index].id);
+                                     // historyDb.streamHistoryController.sink
+                                         // .add(historyRepository.(operationList?[index].id));
 
-                                // initStateOperationsList();
-                              },
-                            ),
-                            onTap: () {},
-                          ),
-                        ),
-                      );
+                                      // initStateOperationsList();
+                                    },
+                                  ),
+                                  onTap: () {},
+                                ),
+                              ),
+                        );
+                      }
+                      return Container();
                     }
                     ),
               ),
