@@ -70,22 +70,22 @@ class CalculatorApp extends StatelessWidget {
                         //  textColor: Colors.grey,
                         textSize: 28,
                         callback: () {
-                          block.addCalcController('');
+                          block.clearCalcController();
+
                         },
                       ),
                       CalculatorButton(
                         text: 'C',
                         textSize: 30,
                         callback: () {
-                          block.addCalcController('');
+                          block.clearCalcController();
                         },
                       ),
                       CalculatorButton(
                         text: '<',
                         textSize: 30,
                         callback: () {
-                          block.textToDisplay
-                              .substring(0, block.textToDisplay.length - 1);
+                          block.clearOneCalcController();
                         },
                       ),
                       CalculatorButton(
@@ -188,7 +188,7 @@ class CalculatorApp extends StatelessWidget {
                         text: '1',
                         textSize: 30,
                         callback: () {
-                          block.textToDisplay = '${block.textToDisplay}1';
+                          block.addCalcController('1');
                         },
                       ),
                       CalculatorButton(
@@ -207,7 +207,9 @@ class CalculatorApp extends StatelessWidget {
                       CalculatorButton(
                         text: '+/-',
                         textSize: 28,
-                        callback: () => {},
+                        callback: () => {
+                         block.minusCalcController()
+                        },
                       ),
                       CalculatorButton(
                         text: '0',
@@ -228,6 +230,7 @@ class CalculatorApp extends StatelessWidget {
                         textSize: 30,
                         callback: () async {
                           block.textToDisplay = block.calc(block.textToDisplay);
+                          block.addCalcController('');
 
                           await Future.delayed(const Duration(seconds: 1));
                         },

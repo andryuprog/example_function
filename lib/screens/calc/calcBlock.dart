@@ -15,32 +15,60 @@ class CalcBlock {
   String textToDisplay = '';
   HistoryRepository rep = HistoryRepository();
 
-  StreamController <String> streamCalcController = StreamController();
+  StreamController<String> streamCalcController = StreamController();
+
+  void minusCalcController() {
+    if (textToDisplay.contains('-')) {
+      textToDisplay = textToDisplay.substring(1);
+    } else {
+      textToDisplay = ("-$textToDisplay");
+    }
+
+    streamCalcController.sink.add(textToDisplay);
+  }
 
   void addCalcController(String val) {
     textToDisplay = textToDisplay + val;
     streamCalcController.sink.add(textToDisplay);
   }
 
+  void clearCalcController() {
+    textToDisplay = '';
+    streamCalcController.sink.add(textToDisplay);
+  }
+
+  void clearOneCalcController() {
+    //if (textToDisplay != null) {}
+    textToDisplay = textToDisplay.substring(0, textToDisplay.length - 1);
+    streamCalcController.sink.add(textToDisplay);
+  }
 
   void plus(firstVal) {
     operation = Operations.plus;
     firstValue = int.parse(firstVal);
+    textToDisplay = '';
+    streamCalcController.sink.add(textToDisplay);
   }
 
   void subtract(firstVal) {
     operation = Operations.subtract;
     firstValue = int.parse(firstVal);
+    textToDisplay = '';
+    streamCalcController.sink.add(textToDisplay);
   }
 
   void multiply(firstVal) {
     operation = Operations.multiply;
     firstValue = int.parse(firstVal);
+    textToDisplay = '';
+    streamCalcController.sink.add(textToDisplay);
   }
 
   void divide(firstVal) {
     operation = Operations.divide;
     firstValue = int.parse(firstVal);
+    textToDisplay = '';
+    streamCalcController.sink.add(textToDisplay);
   }
 
   String calc(secondVal) {
@@ -72,14 +100,14 @@ class CalcBlock {
 
     rep.insertOperationDb(HistoryDb(
         operation: history,
-        time: DateFormat('yyyy - MMMM - dd HH:mm:ss').format(DateTime.now()), isProgress: false));
+        time: DateFormat('yyyy - MMMM - dd HH:mm:ss').format(DateTime.now()),
+        isProgress: false));
 
     return result;
   }
-  void dispose() {
-    streamCalcController.close();
-  }
+// void dispose() {
+//   streamCalcController.close();
+// }
 }
 
 enum Operations { plus, subtract, multiply, divide }
-
