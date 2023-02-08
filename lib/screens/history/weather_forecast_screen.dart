@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -12,17 +11,15 @@ import 'history_repository.dart';
 import 'weather_block_cubit.dart';
 
 class TwoPages extends StatelessWidget {
- TwoPages({Key? key}) : super(key: key);
+  TwoPages({Key? key}) : super(key: key);
 
- HistoryBlock historyDb = HistoryBlock(HistoryRepository())..getOperationList();
- WeatherBlocCubit weather =WeatherBlocCubit(WeatherRepository(WeatherApi()))..getWeatherObject();
- late WeatherBlocCubit weatherCubit;
- late  ErrorState error;
+  HistoryBlock historyDb = HistoryBlock(HistoryRepository())..getOperationList();
+  WeatherBlocCubit weather = WeatherBlocCubit(WeatherRepository(WeatherApi()))..getWeatherObject();
+  //late ErrorState error;
 
- Future initStateOperationsList() async {
-   historyDb.operationList = await historyDb.getOperationList();
- }
-
+  Future initOperationsListDb() async {
+    historyDb.operationList = await historyDb.getOperationList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,47 +37,51 @@ class TwoPages extends StatelessWidget {
                   flex: 30,
                   child: ListView(
                     children: [
-                       BlocBuilder<WeatherBlocCubit, WeatherBlocState>(
-                          bloc: weatherCubit,
-                           //stream: weather.streamController.stream,
-                           builder: (context, state) {
-                                if (state is LoadingState) {
-                       // if (state is ){
-                               return const SpinKitSpinningLines(color: Colors.white);
-                           }
-                            if (state is ErrorState) {
-                              return Center(
-                                        child: Text(
-                                error.error,
+                      BlocBuilder<WeatherBlocCubit, WeatherBlocState>(
+                        bloc: weather,
+                        //stream: weather.streamController.stream,
+                        builder: (context, state) {
+                          if (state is LoadingState) {
+                            // if (state is ){
+                            return const SpinKitSpinningLines(
+                                color: Colors.white);
+                          }
+                          if (state is ErrorState) {
+                            return Center(
+                              child: Text(
+                                state.error,
                                 style: const TextStyle(
-                                fontSize: 20, color: Colors.white,
-                                 ),
-                                 ),
-                                 );
-                                 }
-                               return Column(
-                                          children: <Widget>[
-                                       Padding(
-                                        padding: const EdgeInsets.all(16.0),
-                                             child: Column(
-                                                 children: [
-                                                     Row(
-                                                        //mainAxisSize: MainAxisSize.min,
-                                                       mainAxisAlignment:
-                                                        MainAxisAlignment.center,
-                                                       children: [
-                                                       // CityView(snapshot: snapshot),
-                                                         TempView(
-    //state.data.objectWeather.date,
-                                                        //state.data.objectWeather
-                                                           ),
-                                                           ],
-                                                          ),
-                                                          ],
-                                                             ),
-                                                           ),
-                                                              ],
-                                                            );
+                                  fontSize: 20,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          }
+                          if (state is DataState) {
+                            return Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        //mainAxisSize: MainAxisSize.min,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children:  [
+                                          //Text('text good  Yessss'),
+                                          // CityView(snapshot: snapshot),
+                                        TempView(
+                                        state.data.objectWeather!.date,
+                                          state.data.objectWeather!,
+                                           ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            );
                           } else {
                             return const Center(
                               child: SpinKitSpinningLines(
@@ -101,45 +102,42 @@ class TwoPages extends StatelessWidget {
                         return ListView.builder(
                           padding: const EdgeInsets.all(20.0),
                           itemCount: operationList?.length,
-                          itemBuilder: (context, index) =>
-                              Card(
-                                color:
+                          itemBuilder: (context, index) => Card(
+                            color:
                                 getChangeColor(operationList?[index].operation),
-                                elevation: 20,
-                                shadowColor: Colors.white,
-                                margin: const EdgeInsets.symmetric(
-                                    vertical: 10),
-                                child: ListTile(
-                                  title: Text(
-                                    "${operationList?[index].time}",
-                                    style: const TextStyle(fontSize: 20),
-                                  ),
-                                  subtitle: Text(
-                                    "${operationList?[index].operation}",
-                                  ),
-                                  leading: const Icon(
-                                    Icons.access_alarm_outlined,
-                                    size: 40,
-                                    color: Colors.white,
-                                  ),
-                                  trailing: IconButton(
-                                    icon: const Icon(Icons.delete, size: 40),
-                                    onPressed: () {
-                                      historyDb.dell(operationList?[index].id);
-                                     // historyDb.streamHistoryController.sink
-                                         // .add(historyRepository.(operationList?[index].id));
-
-                                      // initStateOperationsList();
-                                    },
-                                  ),
-                                  onTap: () {},
-                                ),
+                            elevation: 20,
+                            shadowColor: Colors.white,
+                            margin: const EdgeInsets.symmetric(vertical: 10),
+                            child: ListTile(
+                              title: Text(
+                                "${operationList?[index].time}",
+                                style: const TextStyle(fontSize: 20),
                               ),
+                              subtitle: Text(
+                                "${operationList?[index].operation}",
+                              ),
+                              leading: const Icon(
+                                Icons.access_alarm_outlined,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete, size: 40),
+                                onPressed: () {
+                                  historyDb.dell(operationList?[index].id);
+                                  // historyDb.streamHistoryController.sink
+                                  // .add(historyRepository.(operationList?[index].id));
+
+                                  // initStateOperationsList();
+                                },
+                              ),
+                              onTap: () {},
+                            ),
+                          ),
                         );
                       }
                       return Container();
-                    }
-                    ),
+                    }),
               ),
             ],
           ),

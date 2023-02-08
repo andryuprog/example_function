@@ -1,4 +1,4 @@
-#Thu Feb 02 12:32:10 EET 2023
-base.0=C\:\\Users\\andry\\StudioProjects\\calculate_weather_stream\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Wed Feb 08 16:56:29 EET 2023
+base.0=/Users/andrewlutsik/StudioProjects/calculate_weather_stream/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
