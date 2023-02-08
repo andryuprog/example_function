@@ -1,21 +1,23 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:my_calculate/screens/history/history_wrapper.dart';
+import 'package:my_calculate/screens/history/weather_bloc_state.dart';
 import 'package:my_calculate/screens/history/weather_repository.dart';
-import 'package:my_calculate/screens/history/weather_wrapper.dart';
 import '../../api/weather_api.dart';
 import '../../model/history_db.dart';
 import '../../widgets/temp_view.dart';
 import 'history_block.dart';
 import 'history_repository.dart';
-import 'weather_block.dart';
+import 'weather_block_cubit.dart';
 
 class TwoPages extends StatelessWidget {
  TwoPages({Key? key}) : super(key: key);
 
  HistoryBlock historyDb = HistoryBlock(HistoryRepository())..getOperationList();
- WeatherBlockH weather = WeatherBlockH(WeatherRepository(WeatherApi()))..getWeatherObject();
+ WeatherBlocCubit weather =WeatherBlocCubit(WeatherRepository(WeatherApi()))..getWeatherObject();
+ late WeatherBlocCubit weatherCubit;
+ late  ErrorState error;
 
  Future initStateOperationsList() async {
    historyDb.operationList = await historyDb.getOperationList();
@@ -38,47 +40,47 @@ class TwoPages extends StatelessWidget {
                   flex: 30,
                   child: ListView(
                     children: [
-                      StreamBuilder<WeatherWrapper>(
-                        stream: weather.streamController.stream,
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            if (snapshot.data!.isProgress) {
-                              return const SpinKitSpinningLines(
-                                  color: Colors.white);
-                            }
-                            if (snapshot.data!.error != null) {
+                       BlocBuilder<WeatherBlocCubit, WeatherBlocState>(
+                          bloc: weatherCubit,
+                           //stream: weather.streamController.stream,
+                           builder: (context, state) {
+                                if (state is LoadingState) {
+                       // if (state is ){
+                               return const SpinKitSpinningLines(color: Colors.white);
+                           }
+                            if (state is ErrorState) {
                               return Center(
-                                child: Text(
-                                  snapshot.data!.error!,
-                                  style: const TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              );
-                            }
-                            return Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        //mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          TempView(
-                                              snapshot
-                                                  .data!.objectWeather!.date,
-                                              snapshot.data!.objectWeather!),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            );
+                                        child: Text(
+                                error.error,
+                                style: const TextStyle(
+                                fontSize: 20, color: Colors.white,
+                                 ),
+                                 ),
+                                 );
+                                 }
+                               return Column(
+                                          children: <Widget>[
+                                       Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                             child: Column(
+                                                 children: [
+                                                     Row(
+                                                        //mainAxisSize: MainAxisSize.min,
+                                                       mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                       children: [
+                                                       // CityView(snapshot: snapshot),
+                                                         TempView(
+    //state.data.objectWeather.date,
+                                                        //state.data.objectWeather
+                                                           ),
+                                                           ],
+                                                          ),
+                                                          ],
+                                                             ),
+                                                           ),
+                                                              ],
+                                                            );
                           } else {
                             return const Center(
                               child: SpinKitSpinningLines(

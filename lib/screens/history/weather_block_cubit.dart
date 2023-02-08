@@ -1,23 +1,23 @@
 import 'dart:async';
 
+import 'package:bloc/bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:my_calculate/screens/history/weather_model.dart';
-import 'package:my_calculate/widgets/temp_view.dart';
 import '../../model/weather_forecast_daily.dart';
+import 'weather_bloc_state.dart';
 import 'weather_repository.dart';
 import 'weather_wrapper.dart';
 
-class WeatherBlockH {
+class WeatherBlocCubit extends Cubit<WeatherBlocState> {
+  WeatherBlocCubit(this.weatherRepository) : super(WeatherBlocInitial());
 
-  StreamController<WeatherWrapper> streamController = StreamController();
+  //StreamController<WeatherWrapper> streamController = StreamController();
   final WeatherRepository weatherRepository;
-  WeatherBlockH(this.weatherRepository);
+
 
 
   Future<void> getWeatherObject() async {
-    streamController.sink.add(WeatherWrapper(
-      isProgress: true,
-    ));
+    emit(LoadingState());
 
     try {
       WeatherForecast result = await weatherRepository.forecastObject();
@@ -30,20 +30,19 @@ class WeatherBlockH {
           temp: result.list?[0].main?.temp?.toStringAsFixed(0) ?? '0',
           date: date,
           icon: result.list?[0].getIconUrl() ?? '');
-      streamController.sink.add(WeatherWrapper(
-       isProgress: false,
-        objectWeather: model,
-     ));
-    } catch (e) {
-      streamController.sink.add(WeatherWrapper(
+      // streamController.sink.add
+      emit(DataState(WeatherWrapper(
         isProgress: false,
-        error: e.toString()
+        objectWeather: model,
+      )));
+    } catch (e) {
+      emit(ErrorState(e.toString()
       ));
     }
   }
-  void dispose() {
-    streamController.close();
-  }
+// void dispose() {
+//   streamController.close();
+// }
 }
 
 class Util {
