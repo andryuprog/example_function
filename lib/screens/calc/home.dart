@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:my_calculate/screens/history/weather_forecast_screen.dart';
-import 'calcBlock.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_calculate/screens/history/weather_screen.dart';
+import 'calcBlockCubit.dart';
 import '../../widgets/calculator_button.dart';
 import '../../widgets/history_button.dart';
 
 class CalculatorApp extends StatelessWidget {
-  CalculatorApp({Key? key}) : super(key: key);
+   CalculatorApp({Key? key}) : super(key: key);
 
-  CalcBlock block = CalcBlock();
+ CalcBlockCubit block =CalcBlockCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -43,23 +44,31 @@ class CalculatorApp extends StatelessWidget {
                       ),
                     ),
                   ),
-                  StreamBuilder<String>(
-                      stream: block.streamCalcController.stream,
-                      builder: (context, snapshot) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 16),
-                          width: double.infinity,
-                          alignment: const Alignment(1.0, 1.0),
-                          child: Text(
-                            (snapshot.hasData ?? false) ? snapshot.data! : "0",
-                                  maxLines: 1,
-                                  textAlign: TextAlign.end,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 80,
-                                  ),
-                                ),
-                        );
+                  BlocBuilder<CalcBlockCubit, CalcBlockState>(
+                      //stream: block.streamCalcController.stream,
+                    bloc: block,
+                      builder: (context, state) {
+                        if (state is CalcBlocData) {
+                          return Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 16),
+                            width: double.infinity,
+                            alignment: const Alignment(1.0, 1.0),
+                            child: Text(
+                              state.text,
+
+                              //(snapshot.hasData ?? false) ? snapshot.data! : "0",
+                              maxLines: 1,
+                              textAlign: TextAlign.end,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 80,
+                              ),
+                            ),
+                          );
+                        }
+                        else{
+                          return const Text('0');
+                        }
                       }),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

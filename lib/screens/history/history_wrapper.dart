@@ -1,10 +1,10 @@
 // import '../../model/history_db.dart';
 //
- import 'package:my_calculate/screens/history/history_block.dart';
+ import 'package:my_calculate/screens/history/history_block_cubit.dart';
 
 class HistoryWrapper {
 //
-   HistoryBlock? dellHistoryDb;
+   HistoryBlockCubit? dellHistoryDb;
   String? error;
   bool isProgress = false;
 //
