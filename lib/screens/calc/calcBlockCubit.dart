@@ -23,7 +23,7 @@ class CalcBlocData extends CalcBlockState {
 }
 
 class CalcBlockCubit extends Cubit<CalcBlockState>{
-  CalcBlockCubit() : super(CalcBlocInitial());
+  CalcBlockCubit(HistoryRepository historyRepository) : super(CalcBlocInitial());
 
   var firstValue = 0;
   var secondVal = 0;

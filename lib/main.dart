@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) =>
               HistoryBlockCubit(context.read<HistoryRepository>())),
-          // BlocProvider(
-          //     create: (context) =>
-          //     CalcBlockCubit(context.read<HistoryRepository>())),
+          BlocProvider(
+              create: (context) =>
+              CalcBlockCubit(context.read<HistoryRepository>())),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

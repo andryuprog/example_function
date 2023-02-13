@@ -9,7 +9,9 @@ import 'weather_repository.dart';
 import 'weather_wrapper.dart';
 
 class WeatherBlocCubit extends Cubit<WeatherBlocState> {
-  WeatherBlocCubit(this.weatherRepository) : super(WeatherBlocInitial());
+  WeatherBlocCubit(this.weatherRepository) : super(WeatherBlocInitial()){
+    getWeatherObject();
+  }
 
   //StreamController<WeatherWrapper> streamController = StreamController();
   final WeatherRepository weatherRepository;

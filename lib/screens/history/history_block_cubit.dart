@@ -14,7 +14,9 @@ enum CalcEvent {
 
 class HistoryBlockCubit extends Cubit<HistoryBlockState>{
   //StreamController<List<HistoryDb>> streamHistoryController = StreamController();
-  HistoryBlockCubit(this.historyRepository) : super (HistoryBlocInitial());
+  HistoryBlockCubit(this.historyRepository) : super (HistoryBlocInitial()){
+    getOperationList();
+  }
   //{getOperationList();} :
 
   HistoryRepository historyRepository;

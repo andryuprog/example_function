@@ -39,7 +39,7 @@ class TwoPages extends StatelessWidget {
                   child: ListView(
                     children: [
                       BlocBuilder<WeatherBlocCubit, WeatherBlocState>(
-                        bloc: weather,
+                        //bloc: weather,
                         //stream: weather.streamController.stream,
                         builder: (context, state) {
                           if (state is LoadingState) {
@@ -97,7 +97,7 @@ class TwoPages extends StatelessWidget {
                 flex: 70,
                 child:BlocBuilder<HistoryBlockCubit, HistoryBlockState>(
                    // stream: historyDb.streamHistoryController.stream,
-                  bloc: historyDb,
+                 // bloc: historyDb,
                     builder: (context, state) {
                       if (state is HistoryBlocLoading) {
                          const SpinKitSpinningLines(color: Colors.white, size: 40.0);}
@@ -128,7 +128,7 @@ class TwoPages extends StatelessWidget {
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete, size: 40),
                                 onPressed: () {
-                                  historyDb.dell(operationList[index].id);
+                                  context.read<HistoryBlockCubit>().dell(operationList[index].id);
                                   // historyDb.streamHistoryController.sink
                                   // .add(historyRepository.(operationList?[index].id));
 
