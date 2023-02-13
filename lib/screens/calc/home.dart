@@ -67,7 +67,7 @@ class CalculatorApp extends StatelessWidget {
                           );
                         }
                         else{
-                          return const Text('0');
+                          return const Text('');
                         }
                       }),
                   Row(
