@@ -2,21 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:my_calculate/screens/history/weather_bloc_state.dart';
-import 'package:my_calculate/screens/history/weather_repository.dart';
-import '../../api/weather_api.dart';
-import '../../model/history_db.dart';
 import '../../widgets/temp_view.dart';
 import 'history_bloc_state.dart';
 import 'history_block_cubit.dart';
-import 'history_repository.dart';
 import 'weather_block_cubit.dart';
 
 class HistoryPage extends StatelessWidget {
-  HistoryPage({Key? key}) : super(key: key);
+  const HistoryPage({Key? key}) : super(key: key);
 
-  //HistoryBlockCubit historyDb = HistoryBlockCubit(HistoryRepository())..getOperationList();
- // WeatherBlocCubit weather = WeatherBlocCubit(WeatherRepository(WeatherApi()))..getWeatherObject();
-  //late ErrorState error;
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +33,6 @@ class HistoryPage extends StatelessWidget {
                         //stream: weather.streamController.stream,
                         builder: (context, state) {
                           if (state is LoadingState) {
-                            // if (state is ){
                             return const SpinKitSpinningLines(
                                 color: Colors.white);
                           }
@@ -62,12 +55,9 @@ class HistoryPage extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Row(
-                                        //mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children:  [
-                                          //Text('text good  Yessss'),
-                                          // CityView(snapshot: snapshot),
                                         TempView(
                                         state.data.objectWeather!.date,
                                           state.data.objectWeather!,
@@ -92,8 +82,6 @@ class HistoryPage extends StatelessWidget {
               Expanded(
                 flex: 70,
                 child:BlocBuilder<HistoryBlockCubit, HistoryBlockState>(
-                   // stream: historyDb.streamHistoryController.stream,
-                 // bloc: historyDb,
                     builder: (context, state) {
                       if (state is HistoryBlocLoading) {
                          const SpinKitSpinningLines(color: Colors.white, size: 40.0);}
@@ -105,7 +93,7 @@ class HistoryPage extends StatelessWidget {
                             color:
                                 getChangeColor(state.dataBaseList[index].operation),
                             elevation: 20,
-                            shadowColor: Colors.white,
+                            shadowColor: getChangeColor(state.dataBaseList[index].operation),
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             child: ListTile(
                               title: Text(
@@ -124,10 +112,6 @@ class HistoryPage extends StatelessWidget {
                                 icon: const Icon(Icons.delete, size: 40),
                                 onPressed: () {
                                   context.read<HistoryBlockCubit>().dell(state.dataBaseList[index].id);
-                                  // historyDb.streamHistoryController.sink
-                                  // .add(historyRepository.(operationList?[index].id));
-
-                                  // initStateOperationsList();
                                 },
                               ),
                               onTap: () {},

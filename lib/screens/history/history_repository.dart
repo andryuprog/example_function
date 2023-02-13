@@ -3,10 +3,6 @@ import 'package:sqflite/sqflite.dart';
 import '../../model/history_db.dart';
 
 class HistoryRepository{
-  //Database db;
-  //HistoryRepository(this.db);
-
-
 
 
   //READ

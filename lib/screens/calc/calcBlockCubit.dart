@@ -61,7 +61,6 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
   }
 
   void clearOneCalcController() {
-    //if (textToDisplay != null) {}
     textToDisplay = textToDisplay.substring(0, textToDisplay.length - 1);
     //streamCalcController.sink.add
     emit(CalcBlocData(textToDisplay));

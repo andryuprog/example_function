@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,9 +8,8 @@ import '../../widgets/calculator_button.dart';
 import '../../widgets/history_button.dart';
 
 class CalculatorApp extends StatelessWidget {
-  CalculatorApp({Key? key}) : super(key: key);
+  const CalculatorApp({Key? key}) : super(key: key);
 
-  //CalcBlockCubit block =CalcBlockCubit();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,6 @@ class CalculatorApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(
           secondary: Colors.black87,
         ),
-        // secondary:  Color.red,
       ),
       home: Scaffold(
           appBar: AppBar(
@@ -58,8 +55,6 @@ class CalculatorApp extends StatelessWidget {
                         alignment: const Alignment(1.0, 1.0),
                         child: Text(
                           state.text,
-
-                          //(snapshot.hasData ?? false) ? snapshot.data! : "0",
                           maxLines: 1,
                           textAlign: TextAlign.end,
                           style: const TextStyle(
@@ -249,7 +244,7 @@ class CalculatorApp extends StatelessWidget {
                           context.read<CalcBlockCubit>().textToDisplay = context
                               .read<CalcBlockCubit>().calc(context.read<CalcBlockCubit>().textToDisplay);
                           context.read<CalcBlockCubit>().addCalcController('');
-                          log('neponyatno');
+
 
                           await Future.delayed(const Duration(seconds: 1));
                         },
@@ -263,7 +258,7 @@ class CalculatorApp extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => HistoryPage()));
+                              builder: (BuildContext context) => const HistoryPage()));
                       context.read<HistoryBlockCubit>().getOperationList();
                     },
                   ),
