@@ -23,7 +23,7 @@ class CalcBlocData extends CalcBlockState {
 }
 
 class CalcBlockCubit extends Cubit<CalcBlockState>{
-  CalcBlockCubit(HistoryRepository historyRepository) : super(CalcBlocInitial());
+  CalcBlockCubit(this.historyRepository) : super(CalcBlocInitial());
 
   var firstValue = 0;
   var secondVal = 0;
@@ -33,7 +33,7 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
   bool isProgress = false;
   bool isClear = false;
   String textToDisplay = '';
-  HistoryRepository rep = HistoryRepository();
+  HistoryRepository historyRepository;
 
   //StreamController<String> streamCalcController = StreamController();
 
@@ -126,7 +126,7 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
         result = "0";
     }
 
-    rep.insertOperationDb(HistoryDb(
+    historyRepository.insertOperationDb(HistoryDb(
         operation: history,
         time: DateFormat('yyyy - MMMM - dd HH:mm:ss').format(DateTime.now()),
         isProgress: false));

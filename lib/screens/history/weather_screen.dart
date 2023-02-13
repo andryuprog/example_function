@@ -11,16 +11,12 @@ import 'history_block_cubit.dart';
 import 'history_repository.dart';
 import 'weather_block_cubit.dart';
 
-class TwoPages extends StatelessWidget {
-  TwoPages({Key? key}) : super(key: key);
+class HistoryPage extends StatelessWidget {
+  HistoryPage({Key? key}) : super(key: key);
 
-  HistoryBlockCubit historyDb = HistoryBlockCubit(HistoryRepository())..getOperationList();
-  WeatherBlocCubit weather = WeatherBlocCubit(WeatherRepository(WeatherApi()))..getWeatherObject();
+  //HistoryBlockCubit historyDb = HistoryBlockCubit(HistoryRepository())..getOperationList();
+ // WeatherBlocCubit weather = WeatherBlocCubit(WeatherRepository(WeatherApi()))..getWeatherObject();
   //late ErrorState error;
-
-  Future initOperationsListDb() async {
-    historyDb.operationList = await historyDb.getOperationList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,23 +98,22 @@ class TwoPages extends StatelessWidget {
                       if (state is HistoryBlocLoading) {
                          const SpinKitSpinningLines(color: Colors.white, size: 40.0);}
                       if (state is HistoryBlocDataBase) {
-                        List<HistoryDb>? operationList = state.dataBaseList;
                         return ListView.builder(
                           padding: const EdgeInsets.all(20.0),
-                          itemCount: operationList.length,
+                          itemCount: state.dataBaseList.length,
                           itemBuilder: (context, index) => Card(
                             color:
-                                getChangeColor(operationList[index].operation),
+                                getChangeColor(state.dataBaseList[index].operation),
                             elevation: 20,
                             shadowColor: Colors.white,
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             child: ListTile(
                               title: Text(
-                                "${operationList[index].time}",
+                                "${state.dataBaseList[index].time}",
                                 style: const TextStyle(fontSize: 20),
                               ),
                               subtitle: Text(
-                                "${operationList[index].operation}",
+                                "${state.dataBaseList[index].operation}",
                               ),
                               leading: const Icon(
                                 Icons.access_alarm_outlined,
@@ -128,7 +123,7 @@ class TwoPages extends StatelessWidget {
                               trailing: IconButton(
                                 icon: const Icon(Icons.delete, size: 40),
                                 onPressed: () {
-                                  context.read<HistoryBlockCubit>().dell(operationList[index].id);
+                                  context.read<HistoryBlockCubit>().dell(state.dataBaseList[index].id);
                                   // historyDb.streamHistoryController.sink
                                   // .add(historyRepository.(operationList?[index].id));
 
@@ -163,7 +158,7 @@ class TwoPages extends StatelessWidget {
         return const Color(0xFF1B0DAC);
       }
       if (operation.contains('*')) {
-        return const Color(0xFFEEF905);
+        return const Color(0xFFF38905);
       }
     }
   }

@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
             initialRoute: '/',
             routes: {
               '/': (context) => CalculatorApp(),
-              '/two_pages': (context) => TwoPages(),
+              '/two_pages': (context) => HistoryPage(),
             }),
       ),
     );

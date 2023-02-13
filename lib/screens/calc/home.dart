@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_calculate/screens/history/weather_screen.dart';
+import '../history/history_block_cubit.dart';
 import 'calcBlockCubit.dart';
 import '../../widgets/calculator_button.dart';
 import '../../widgets/history_button.dart';
@@ -246,6 +249,7 @@ class CalculatorApp extends StatelessWidget {
                           context.read<CalcBlockCubit>().textToDisplay = context
                               .read<CalcBlockCubit>().calc(context.read<CalcBlockCubit>().textToDisplay);
                           context.read<CalcBlockCubit>().addCalcController('');
+                          log('neponyatno');
 
                           await Future.delayed(const Duration(seconds: 1));
                         },
@@ -259,8 +263,8 @@ class CalculatorApp extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => TwoPages()));
-                      context.read<CalcBlockCubit>().rep.getOperationDb();
+                              builder: (BuildContext context) => HistoryPage()));
+                      context.read<HistoryBlockCubit>().getOperationList();
                     },
                   ),
                 ],
