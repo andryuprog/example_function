@@ -44,12 +44,18 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
   }
 
   void addCalcController(String val) {
+    if (isClear){
+      textToDisplay ='';
+      history = '';
+      isClear = false;
+    }
     textToDisplay = textToDisplay + val;
       emit(CalcBlocData(textToDisplay));
   }
 
   void clearCalcController() {
     textToDisplay = '';
+    history = '';
     emit(CalcBlocData(textToDisplay));
   }
 

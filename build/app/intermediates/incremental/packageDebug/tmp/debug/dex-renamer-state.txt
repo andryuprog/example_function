@@ -1,4 +1,4 @@
-#Tue Feb 14 09:58:46 EET 2023
+#Tue Feb 14 10:58:36 EET 2023
 base.0=/Users/andrewlutsik/StudioProjects/calculate_weather_stream/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
