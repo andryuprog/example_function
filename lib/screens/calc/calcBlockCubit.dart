@@ -1,5 +1,4 @@
 
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
@@ -18,8 +17,6 @@ class CalcBlocData extends CalcBlockState {
 
   @override
   List<Object?> get props => [text];
-
-
 }
 
 class CalcBlockCubit extends Cubit<CalcBlockState>{
@@ -43,20 +40,16 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
     } else {
       textToDisplay = ("-$textToDisplay");
     }
-
-   // streamCalcController.sink.add
       emit(CalcBlocData(textToDisplay));
   }
 
   void addCalcController(String val) {
     textToDisplay = textToDisplay + val;
-    //streamCalcController.sink.add
       emit(CalcBlocData(textToDisplay));
   }
 
   void clearCalcController() {
     textToDisplay = '';
-    //streamCalcController.sink.add
     emit(CalcBlocData(textToDisplay));
   }
 
@@ -70,7 +63,6 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
     operation = Operations.plus;
     firstValue = int.parse(firstVal);
     textToDisplay = '';
-    //streamCalcController.sink.add
     emit(CalcBlocData(textToDisplay));
   }
 
@@ -79,7 +71,6 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
     firstValue = int.parse(firstVal);
     textToDisplay = '';
     emit(CalcBlocData(textToDisplay));
-    //streamCalcController.sink.add(textToDisplay);
   }
 
   void multiply(firstVal) {
@@ -95,7 +86,6 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
     firstValue = int.parse(firstVal);
     textToDisplay = '';
     emit(CalcBlocData(textToDisplay));
-    //streamCalcController.sink.add(textToDisplay);
   }
 
   String calc(secondVal) {
@@ -132,9 +122,6 @@ class CalcBlockCubit extends Cubit<CalcBlockState>{
 
     return result;
   }
-// void dispose() {
-//   streamCalcController.close();
-// }
 }
 
 enum Operations { plus, subtract, multiply, divide }

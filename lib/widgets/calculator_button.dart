@@ -28,8 +28,8 @@ class CalculatorButton extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: 70,
-        height: 70,
+        width: 65,
+        height: 65,
         child: MaterialButton(
             highlightColor: Colors.deepPurpleAccent,
             splashColor: Colors.amber,

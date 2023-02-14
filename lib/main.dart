@@ -47,12 +47,11 @@ class MyApp extends StatelessWidget {
               colorScheme: const ColorScheme.dark(
                 secondary: Colors.black87,
               ),
-              // secondary:  Color.red,
             ),
             initialRoute: '/',
             routes: {
-              '/': (context) => CalculatorApp(),
-              '/two_pages': (context) => HistoryPage(),
+              '/': (context) => const CalculatorApp(),
+              '/two_pages': (context) => const HistoryPage(),
             }),
       ),
     );

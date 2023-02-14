@@ -24,7 +24,6 @@ class HistoryRepository{
   Future<HistoryDb> insertOperationDb(HistoryDb operation) async {
     Database db = await DBProvider.db.database;
     operation.id = await db.insert(DBProvider.db.operationTable, operation.toMap());
-    // print('должно добавить значение$operation');
     return operation;
   }
 

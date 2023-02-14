@@ -25,14 +25,12 @@ class WeatherBlocCubit extends Cubit<WeatherBlocState> {
       DateTime formattedDate = DateTime.fromMillisecondsSinceEpoch(
           result.list![0].dt! * 1000);
       String date = Util.getFormattedDate(formattedDate);
-     // int hour = DateTime.now().hour;
       WeatherModel model = WeatherModel(
           city: result.city?.name ?? '',
           country: result.city?.country ?? '',
           temp: result.list?[0].main?.temp?.toStringAsFixed(0) ?? '0',
           date: date,
           icon: result.list?[0].getIconUrl() ?? '');
-      // streamController.sink.add
       emit(DataState(WeatherWrapper(
         isProgress: false,
         objectWeather: model,

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-
 import '../model/weather_forecast_daily.dart';
 import '../utilities/constants.dart';
 
@@ -13,9 +12,6 @@ class WeatherApi {
       'units': 'metric',
       'q': cityName,
     };
-
-
-
 
     var uri = Uri.https(Constants.WEATER_BASE_URL_DOMAIN,
         Constants.WEATHE_FORECAST_PATH, queryParameters);
