@@ -2,25 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:my_calculate/screens/history/weather_bloc_state.dart';
-import 'package:my_calculate/screens/history/weather_repository.dart';
-import '../../api/weather_api.dart';
-import '../../model/history_db.dart';
 import '../../widgets/temp_view.dart';
 import 'history_bloc_state.dart';
 import 'history_block_cubit.dart';
-import 'history_repository.dart';
 import 'weather_block_cubit.dart';
 
-class TwoPages extends StatelessWidget {
-  TwoPages({Key? key}) : super(key: key);
+class HistoryPage extends StatelessWidget {
+  const HistoryPage({Key? key}) : super(key: key);
 
-  HistoryBlockCubit historyDb = HistoryBlockCubit(HistoryRepository())..getOperationList();
-  WeatherBlocCubit weather = WeatherBlocCubit(WeatherRepository(WeatherApi()))..getWeatherObject();
-  //late ErrorState error;
 
-  Future initOperationsListDb() async {
-    historyDb.operationList = await historyDb.getOperationList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +24,19 @@ class TwoPages extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Expanded(
+              Flexible(
+
+
                   flex: 30,
+                  fit: FlexFit.loose,
+
                   child: ListView(
                     children: [
                       BlocBuilder<WeatherBlocCubit, WeatherBlocState>(
-                        bloc: weather,
+                        //bloc: weather,
                         //stream: weather.streamController.stream,
                         builder: (context, state) {
                           if (state is LoadingState) {
-                            // if (state is ){
                             return const SpinKitSpinningLines(
                                 color: Colors.white);
                           }
@@ -66,12 +59,11 @@ class TwoPages extends StatelessWidget {
                                   child: Column(
                                     children: [
                                       Row(
-                                        //mainAxisSize: MainAxisSize.min,
+                                        mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
+
                                         children:  [
-                                          //Text('text good  Yessss'),
-                                          // CityView(snapshot: snapshot),
                                         TempView(
                                         state.data.objectWeather!.date,
                                           state.data.objectWeather!,
@@ -96,43 +88,36 @@ class TwoPages extends StatelessWidget {
               Expanded(
                 flex: 70,
                 child:BlocBuilder<HistoryBlockCubit, HistoryBlockState>(
-                   // stream: historyDb.streamHistoryController.stream,
-                  bloc: historyDb,
                     builder: (context, state) {
                       if (state is HistoryBlocLoading) {
                          const SpinKitSpinningLines(color: Colors.white, size: 40.0);}
                       if (state is HistoryBlocDataBase) {
-                        List<HistoryDb>? operationList = state.dataBaseList;
                         return ListView.builder(
-                          padding: const EdgeInsets.all(20.0),
-                          itemCount: operationList.length,
+                          padding: const EdgeInsets.all(10.0),
+                          itemCount: state.dataBaseList.length,
                           itemBuilder: (context, index) => Card(
                             color:
-                                getChangeColor(operationList[index].operation),
+                                getChangeColor(state.dataBaseList[index].operation),
                             elevation: 20,
-                            shadowColor: Colors.white,
+                            shadowColor: getChangeColor(state.dataBaseList[index].operation),
                             margin: const EdgeInsets.symmetric(vertical: 10),
                             child: ListTile(
                               title: Text(
-                                "${operationList[index].time}",
-                                style: const TextStyle(fontSize: 20),
+                                "${state.dataBaseList[index].time}",
+                                style: const TextStyle(fontSize: 16),
                               ),
                               subtitle: Text(
-                                "${operationList[index].operation}",
+                                "${state.dataBaseList[index].operation}",
                               ),
                               leading: const Icon(
                                 Icons.access_alarm_outlined,
-                                size: 40,
+                                size: 36,
                                 color: Colors.white,
                               ),
                               trailing: IconButton(
-                                icon: const Icon(Icons.delete, size: 40),
+                                icon: const Icon(Icons.delete, size: 36),
                                 onPressed: () {
-                                  historyDb.dell(operationList[index].id);
-                                  // historyDb.streamHistoryController.sink
-                                  // .add(historyRepository.(operationList?[index].id));
-
-                                  // initStateOperationsList();
+                                  context.read<HistoryBlockCubit>().dell(state.dataBaseList[index].id);
                                 },
                               ),
                               onTap: () {},
@@ -163,7 +148,7 @@ class TwoPages extends StatelessWidget {
         return const Color(0xFF1B0DAC);
       }
       if (operation.contains('*')) {
-        return const Color(0xFFEEF905);
+        return const Color(0xFFF38905);
       }
     }
   }

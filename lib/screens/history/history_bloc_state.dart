@@ -1,8 +1,7 @@
 
 import 'package:equatable/equatable.dart';
-
 import '../../model/history_db.dart';
-import 'history_block_cubit.dart';
+
 
 abstract class HistoryBlockState extends Equatable {
   const HistoryBlockState();

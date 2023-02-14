@@ -33,34 +33,34 @@ class TempView extends StatelessWidget {
             Text(
               '${model.temp}°C',
               style: const TextStyle(
-                fontSize: 45.0,
+                fontSize: 40.0,
                 color: Colors.white,
               ),
             ),
-            const SizedBox(width: 50.0),
+            const SizedBox(width: 30.0),
             Text(
               date,
               style: const TextStyle(
-                fontSize: 25.0,
+                fontSize: 20.0,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 20.0),
+        const SizedBox(height: 10.0),
         Row(
           children: <Widget>[
             Text(
               '${model.city}, ${model.country}',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 28.0,
+                fontSize: 26.0,
                 color: Colors.blue,
               ),
             ),
           ],
         ),
         const SizedBox(
-          height: 20.0,
+          height: 10.0,
         ),
       ],
     );
