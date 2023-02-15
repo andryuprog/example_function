@@ -36,7 +36,7 @@ class HistoryButton extends StatelessWidget {
         child: Text(
           text!,
           style: TextStyle(
-            letterSpacing: 20.0,
+            letterSpacing: 10.0,
             fontSize: textSize,
             color: Colors.white,
           ),

@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_calculate/screens/history/weather_screen.dart';
 import 'api/weather_dio_api.dart';
 import 'screens/calc/calcBlockCubit.dart';
-import 'screens/calc/home.dart';
+import 'screens/calc/calc.dart';
 import 'screens/history/history_block_cubit.dart';
 import 'screens/history/history_repository.dart';
 import 'screens/history/weather_block_cubit.dart';
 import 'screens/history/weather_repository.dart';
+import 'screens/home_page/registration.dart';
 
 
 void main() {
@@ -50,8 +51,8 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: '/',
             routes: {
-              '/': (context) => const CalculatorApp(),
-              '/two_pages': (context) => const HistoryPage(),
+              '/': (context) => const Registration(),
+              '/two_pages': (context) => const CalculatorApp(),
             }),
       ),
     );
