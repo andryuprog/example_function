@@ -14,11 +14,6 @@ class WeatherApi {
       'q': cityName,
     };
 
-    // var uri = Uri.http(Constants.WEATER_BASE_URL_DOMAIN,
-    //     Constants.WEATHE_FORECAST_PATH, queryParameters);
-
-    //log('reauest : ${uri.toString()}');
-
     var response = await dio.get("${Constants.WEATHER_BASE_SCHEME}${Constants.WEATER_BASE_URL_DOMAIN}"
         "${Constants.WEATHE_FORECAST_PATH}",queryParameters: queryParameters);// запрос
 
