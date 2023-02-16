@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
             initialRoute: '/',
             routes: {
               '/': (context) => const Registration(),
-              '/two_pages': (context) => const CalculatorApp(),
+              '/weather_screen': (context) => const CalculatorApp(),
             }),
       ),
     );
