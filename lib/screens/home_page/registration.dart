@@ -23,37 +23,54 @@ class Registration extends StatelessWidget {
             title: const Text('registration'),
             centerTitle: true,
           ),
-          body:
-          BlocBuilder<CalcBlockCubit, CalcBlockState>(
+          body: BlocBuilder<CalcBlockCubit, CalcBlockState>(
             builder: (context, state) {
               return Container(
-                  color: Colors.black54,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                padding: const EdgeInsets.only(top: 100.0),
+                color: Colors.black54,
+                child: Form(
+                  child: ListView(
+                    padding: const EdgeInsets.all(16),
                     children: [
-                      Form(
-                          child:
-                          TextFormField()
-                      )
+                      TextFormField(
+                        decoration: const InputDecoration(labelText: 'Name *'),
+                      ),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                          decoration:
+                              const InputDecoration(labelText: 'password *')),
+                      const SizedBox(height: 16),
+                      TextFormField(
+                          decoration:
+                              const InputDecoration(labelText: 'password *')),
+                      const SizedBox(height: 30),
 
-
-                      HistoryButton(
+                      const HistoryButton(
                         text: 'REGISTRATION',
                         textSize: 22,
-                        callback: () {
-                          Navigator.push(
+                        textColor: Colors.white,
+                        callback: () => Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                  const CalculatorApp()));
-                          //context.read<HistoryBlockCubit>().getOperationList();
-                        },
+                                  const CalculatorApp())),
+
                       ),
+
+
                     ],
-                  )
+
+                  ),
+
+                ),
+
               );
+
             },
-          )),
+
+          )
+
+      ),
     );
   }
 }
