@@ -28,7 +28,7 @@ class HistoryButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30.0),
           side: const BorderSide(
-            width: 0.5,
+            width: 0.8,
             color: Colors.white,
           ),
         ),
