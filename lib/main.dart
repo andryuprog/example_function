@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_calculate/screens/history/weather_screen.dart';
 import 'package:my_calculate/screens/home_page/authorization.dart';
+import 'package:my_calculate/screens/home_page/home_bloc_cubit.dart';
 import 'api/weather_dio_api.dart';
 import 'screens/calc/calcBlockCubit.dart';
 import 'screens/calc/calc.dart';
@@ -9,6 +10,7 @@ import 'screens/history/history_block_cubit.dart';
 import 'screens/history/history_repository.dart';
 import 'screens/history/weather_block_cubit.dart';
 import 'screens/history/weather_repository.dart';
+import 'screens/home_page/home_repository.dart';
 import 'screens/home_page/registration.dart';
 
 
@@ -29,6 +31,9 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (context) => HistoryRepository(),
         ),
+        RepositoryProvider(
+            create: (context) => HomeRepository(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -41,6 +46,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) =>
               CalcBlockCubit(context.read<HistoryRepository>())),
+          BlocProvider(
+            create: (context) =>
+          HomeBlocCubit(context.read<HomeRepository>())),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -52,7 +60,7 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: '/',
             routes: {
-              '/': (context) => const Registration(),
+              '/': (context) =>  Registration(),
               '/weather_screen': (context) => const CalculatorApp(),
             }),
       ),

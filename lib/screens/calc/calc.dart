@@ -127,9 +127,7 @@ class CalculatorApp extends StatelessWidget {
                             text: '8',
                             textSize: 26,
                             callback: () {
-                              context
-                                  .read<CalcBlockCubit>()
-                                  .addCalcController('8');
+                              context.read<CalcBlockCubit>().addCalcController('8');
                             },
                           ),
                           CalculatorButton(
