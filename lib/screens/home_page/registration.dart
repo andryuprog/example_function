@@ -1,19 +1,13 @@
 
 
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../calc/calc.dart';
-
 import '../../widgets/history_button.dart';
-import '../history/history_block_cubit.dart';
-import 'authorization.dart';
 
 class Registration extends StatefulWidget {
    const Registration({Key? key}) : super(key: key);
-
 
   @override
   State<Registration> createState() => _RegistrationState();
@@ -29,14 +23,14 @@ class _RegistrationState extends State<Registration> {
   final String _userName = '';
   final String _password = '';
   final _nameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
 
   @override
   void dispose() {
     _nameController.dispose();
     super.dispose();
   }
-
-
 
   @override
   void initState() {
@@ -49,6 +43,9 @@ class _RegistrationState extends State<Registration> {
 
   @override
   Widget build(BuildContext context) {
+ // final double height = MediaQuery.of(context).size.height;
+  //final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'my calculate',
@@ -64,31 +61,41 @@ class _RegistrationState extends State<Registration> {
           centerTitle: true,
         ),
         backgroundColor: Colors.black54,
-        body: Form(
-          child: Padding(
+        body: Form(key: _formKey,
+          child: ListView(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
               children: [
                 const SizedBox(height: 40),
                 TextFormField(
+                  validator: (value) {
+                   if (value!.isEmpty || !RegExp(r'^[a-z A-Z]+$').hasMatch(value)){
+                     return 'пожалуйста введите правильное имя';
+                   }else {
+                     return null;
+                   }
+                  },
                   controller: _nameController,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                       labelText: 'Name *',
                       hintText: 'введите ваше имя',
-                      prefixIcon: Icon(Icons.person),
-                      suffixIcon: Icon(Icons.delete),
-                      enabledBorder: OutlineInputBorder(
+                      prefixIcon: const Icon(Icons.person),
+                      suffixIcon: IconButton(
+                          onPressed: (){
+
+                          },
+                          icon:const Icon(Icons.delete)) ,
+                      enabledBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         borderSide:
                         BorderSide(color: Colors.white, width: 0.8),
                       ),
-                      focusedBorder: OutlineInputBorder(
+                      focusedBorder: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                         borderSide:
                         BorderSide(color: Colors.white, width: 0.8),
                       )),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
                 TextFormField(
                   //controller: ,
                   keyboardType: TextInputType.number,
@@ -97,7 +104,7 @@ class _RegistrationState extends State<Registration> {
                   decoration: InputDecoration(
                       labelText: 'Password *',
                       hintText: 'введите пароль',
-                      prefixIcon: const Icon(Icons.security),
+                      prefixIcon: const Icon(Icons.security_outlined),
                       suffixIcon: IconButton(
                         icon:  Icon(_hidePass ? Icons.visibility : Icons.visibility_off),
                         onPressed: () {
@@ -126,7 +133,7 @@ class _RegistrationState extends State<Registration> {
                   decoration: InputDecoration(
                       labelText: 'Password *',
                       hintText: 'введите пароль',
-                      prefixIcon: const Icon(Icons.security),
+                      prefixIcon: const Icon(Icons.security_outlined),
                       suffixIcon: IconButton(
                           onPressed: () {},
                           icon: const Icon(Icons.visibility)),
@@ -141,29 +148,32 @@ class _RegistrationState extends State<Registration> {
                         BorderSide(color: Colors.white, width: 0.8),
                       )),
                 ),
-                const Spacer(),
                 HistoryButton(
                   text: 'REGISTRATION',
                   textSize: 20,
                   textColor: Colors.white,
                   callback: () async{
-                    _addNamePref(_nameController.text);
-                    _addPasswordPref;
-                    //print('имя пользователя $_addNamePref');
-                   // print('пароль пользователя $_addPasswordPref');
-                   print('имя пользователя Controller ${_nameController.text}');
-                    log('$_addNamePref');
-
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                            const CalculatorApp()));
-                    context.read<HistoryBlockCubit>().getOperationList();
+                    if (_formKey.currentState!.validate()) {
+                   //  const snackBar = SnackBar(content: Text('сохранение данных'));
+                     // _scaffoldKey.currentState!;
+                    }
+                  //  _addNamePref(_nameController.text);
+                  //  _addPasswordPref;
+                  //   print('имя пользователя $_addNamePref');
+                  //  print('пароль пользователя $_addPasswordPref');
+                  // print('имя пользователя Controller ${_nameController.text}');
+                  //  log('$_addNamePref');
+                  //
+                  //   Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(
+                  //           builder: (BuildContext context) =>
+                  //           const CalculatorApp()));
+                  //   context.read<HistoryBlockCubit>().getOperationList();
                   },
                 ),
               ],
-            ),
+
           ),
         ),
       ),
@@ -181,11 +191,9 @@ class _RegistrationState extends State<Registration> {
   }
 
   void _loadNamePref() {
+    // void addPref () {
+    //   _nameController.text;
+    // }
 
-
-  // void addPref () {
-  //   _nameController.text;
-  // }
-
-
+  }
 }
