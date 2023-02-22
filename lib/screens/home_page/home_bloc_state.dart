@@ -21,9 +21,9 @@ class HomeBlocData extends HomeBlocState {
 }
 
 class EditorSee extends HomeBlocState {
-  // bool hidePass;
-  // EditorSee(this.hidePass);
+   bool hidePass = false;
+   EditorSee(this.hidePass);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [hidePass];
 
 }

@@ -41,7 +41,6 @@ class Authorization extends StatelessWidget {
                           labelText:  'Name *',
                           hintText: 'введите ваше имя',
                           prefixIcon: Icon(Icons.person),
-                          suffixIcon: Icon(Icons.delete),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white,width: 0.8),
@@ -81,8 +80,6 @@ class Authorization extends StatelessWidget {
                         child: const Text('Забыли пароль?'),
                     ),
 
-
-                    const Spacer(),
                     HistoryButton(
                       text: 'AUTHORIZATION',
                       textSize: 20,

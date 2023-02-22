@@ -1,20 +1,28 @@
 
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'home_bloc_cubit.dart';
+
 class HomeRepository {
+  // HomeBlocCubit homeBlocCubit;
+  // HomeRepository(this.homeBlocCubit);
+  final prefs = SharedPreferences.getInstance();
 
 
-  // @override
-  // void dispose() {
-  //   _nameController.dispose();      вырезано из StatefullWidget
-  //   super.dispose();
+
+  // Future _addNamePref(String string) async {
+  //   await _pref.setString(Registration.namePrefKey, string);
+  //   _loadNamePref();
   // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   SharedPreferences.getInstance().then((prefs) {
-  //     setState(() => _pref = prefs);
-  //     _loadNamePref();
-  //   });
+  //
+  // Future _addPasswordPref(String string) async {
+  //   await _pref.setString(Registration.passwordPrefKey, string);
   // }
-
-}
+  //
+  // void _loadNamePref() {
+  //   // void addPref () {
+  //   //   _nameController.text;
+  //   // }
+  // }
+  //
+  }
