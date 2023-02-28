@@ -15,29 +15,24 @@ class HomeRepository {
 
    Future<void> setNamePref(String value) async {
     await sharedPreferences.setString(namePrefKey, value);// метод записывает в базу
-    getNamePref();
+    getNamePref(value);
    }
 
   Future<void> setPasswordPref(String value) async {
     await sharedPreferences.setString(passwordPrefKey, value);
-    getPasswordPref();
+    getPasswordPref(value);
   }
 
-  void  getNamePref() {
+  void  getNamePref(value) {
     resultPreferencesName = sharedPreferences.getString(namePrefKey) ?? 'в базе нет таких данных';// считывает данные с базы
   }
 
-  void  getPasswordPref() {
+  void  getPasswordPref(value) {
     resultPreferencesPassword = sharedPreferences.getString(passwordPrefKey) ?? 'нет данных';// считывает данные с базы
   }
 
-  void deletePreferences() {
+  void deletePreferences(value) {
     sharedPreferences.remove(removePrefKey);
-  }
-
-  void getMeaningPreferences () {
-       meaning = sharedPreferences.getString(namePrefKey)!;
-
   }
 
 

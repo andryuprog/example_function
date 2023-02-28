@@ -17,12 +17,12 @@ class HomeBlocCubit extends Cubit<HomeBlocState> {
     emit(HomeBlocData());
   }
     void getNamePreferences(value) {
-     homeRepository.getNamePref();
+     homeRepository.getNamePref(value);
      emit(HomeBlocData());
   }
 
   void getPasswordPreferences(value) {
-    homeRepository.getPasswordPref();
+    homeRepository.getPasswordPref(value);
     emit(HomeBlocData());
   }
 }
