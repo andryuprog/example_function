@@ -1,15 +1,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_calculate/screens/home_page/home_bloc_cubit.dart';
 
 import '../calc/calc.dart';
 import '../calc/calcBlockCubit.dart';
 import '../../widgets/history_button.dart';
 import '../history/history_block_cubit.dart';
 import '../history/weather_screen.dart';
+import 'home_bloc_state.dart';
 
 class Authorization extends StatelessWidget {
-  const Authorization({Key? key}) : super(key: key);
+   Authorization({Key? key}) : super(key: key);
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class Authorization extends StatelessWidget {
           centerTitle: true,
         ),
         backgroundColor: Colors.black54,
-        body: BlocBuilder<CalcBlockCubit, CalcBlockState>(
+        body: BlocBuilder<HomeBlocCubit, HomeBlocState>(
           builder: (context, state) {
             return Form(
               child: Padding(
@@ -37,11 +41,11 @@ class Authorization extends StatelessWidget {
                   children: [
                     const SizedBox(height: 50),
                     TextFormField(
+                      initialValue: context.read<HomeBlocCubit>().homeRepository.resultPreferencesName,
                       decoration: const InputDecoration(
                           labelText:  'Name *',
                           hintText: 'введите ваше имя',
                           prefixIcon: Icon(Icons.person),
-                          suffixIcon: Icon(Icons.delete),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             borderSide: BorderSide(color: Colors.white,width: 0.8),
@@ -51,10 +55,17 @@ class Authorization extends StatelessWidget {
                             borderSide: BorderSide(color: Colors.white,width: 0.8),
                           )
                       ),
-
                     ),
                     const SizedBox(height: 20),
                     TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty ||
+                            !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                          return 'неправильный пароль';
+                        } else {
+                          return null;
+                        }
+                      },
                       keyboardType: TextInputType.number,
                       obscureText: true,
                       decoration:  InputDecoration(
@@ -81,30 +92,33 @@ class Authorization extends StatelessWidget {
                         child: const Text('Забыли пароль?'),
                     ),
 
-
-                    const Spacer(),
                     HistoryButton(
                       text: 'AUTHORIZATION',
-                      textSize: 20,
+                      textSize: 15,
                       textColor: Colors.white,
-                      callback: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                const CalculatorApp()));
-                        context.read<HistoryBlockCubit>().getOperationList();
-                      },
+                      callback: ()async {
+                        if (_formKey.currentState!.validate()) {
 
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const CalculatorApp()));
+                         // context.read<HistoryBlockCubit>().getOperationList();
+                        } else {
+                          const snackBar = SnackBar(
+                              backgroundColor: Colors.red,
+                              content: Text('ошибка ввода данных'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                        //context.read<HomeBlocCubit>().addPasswordPreferences(passwordController.text);
+                       // context.read<HomeBlocCubit>().addNamePreferences(nameController.text);
+                      },
                     ),
 
                   ],
                 ),
               ),
-
-
-
-
 
 
             );

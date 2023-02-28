@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calculate/screens/history/weather_screen.dart';
 import 'package:my_calculate/screens/home_page/authorization.dart';
 import 'package:my_calculate/screens/home_page/home_bloc_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'api/weather_dio_api.dart';
 import 'screens/calc/calcBlockCubit.dart';
 import 'screens/calc/calc.dart';
@@ -14,12 +14,15 @@ import 'screens/home_page/home_repository.dart';
 import 'screens/home_page/registration.dart';
 
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences sharedPreferences =  await SharedPreferences.getInstance();
+  runApp(MyApp(sharedPreferences: sharedPreferences));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SharedPreferences sharedPreferences;
+  const MyApp({super.key, required this.sharedPreferences});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
           create: (context) => HistoryRepository(),
         ),
         RepositoryProvider(
-            create: (context) => HomeRepository(),
+            create: (context) => HomeRepository(sharedPreferences),
         ),
       ],
       child: MultiBlocProvider(
@@ -60,7 +63,7 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: '/',
             routes: {
-              '/': (context) =>  Registration(),
+              '/': (context) =>  const Registration(),
               '/weather_screen': (context) => const CalculatorApp(),
             }),
       ),
