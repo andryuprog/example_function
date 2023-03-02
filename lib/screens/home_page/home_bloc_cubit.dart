@@ -8,22 +8,29 @@ class HomeBlocCubit extends Cubit<HomeBlocState> {
   HomeBlocCubit(this.homeRepository) : super(HomeBlocInitial());
   HomeRepository homeRepository;
 
+
   void  addNamePreferences (value) {
   homeRepository.setNamePref(value);
-  emit(HomeBlocData());
+  emit(const HomeBlocDataState());
 }
+
   void  addPasswordPreferences (value) {
     homeRepository.setPasswordPref(value);
-    emit(HomeBlocData());
   }
-    void getNamePreferences(value) {
-     homeRepository.getNamePref(value);
-     emit(HomeBlocData());
+     String? getNamePreferences() {
+     var name = homeRepository.getNamePref();
+     emit( HomeBlocDataState(name: name));
+     return name;
+
   }
 
-  void getPasswordPreferences(value) {
-    homeRepository.getPasswordPref(value);
-    emit(HomeBlocData());
-  }
+  //  getPasswordPreferences(String value) {
+  //   if (homeRepository.getPasswordPref() == value) {
+  //   }
+  //   emit(const HomeBlocDataState());
+  // }
+
+
+
 }
 

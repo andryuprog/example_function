@@ -9,26 +9,27 @@ class HomeRepository {
     String namePrefKey = 'name_pref';
     String passwordPrefKey = 'password_pref';
     String removePrefKey = 'remove_pref';
-   String resultPreferencesName = ''; // значение взятое с базы
-   String resultPreferencesPassword = '';
-   String meaning = '';
+   // String resultPreferencesName = ''; // значение взятое с базы
+   // String resultPreferencesPassword = '';
+   // String meaning = '';
 
    Future<void> setNamePref(String value) async {
     await sharedPreferences.setString(namePrefKey, value);// метод записывает в базу
-    getNamePref(value);
+    getNamePref();
    }
 
   Future<void> setPasswordPref(String value) async {
     await sharedPreferences.setString(passwordPrefKey, value);
-    getPasswordPref(value);
+    getPasswordPref();
   }
 
-  void  getNamePref(value) {
-    resultPreferencesName = sharedPreferences.getString(namePrefKey) ?? 'в базе нет таких данных';// считывает данные с базы
+  String? getNamePref() {
+    return sharedPreferences.getString(namePrefKey);// считывает данные с базы
+
   }
 
-  void  getPasswordPref(value) {
-    resultPreferencesPassword = sharedPreferences.getString(passwordPrefKey) ?? 'нет данных';// считывает данные с базы
+  String? getPasswordPref() {
+     return sharedPreferences.getString(passwordPrefKey);// считывает данные с базы
   }
 
   void deletePreferences(value) {

@@ -12,7 +12,7 @@ class CalcBlocInitial extends CalcBlockState {
   List<Object?> get props => [];
 }
 class CalcBlocData extends CalcBlockState {
-  String text;
+  final String text;
   CalcBlocData(this.text);
 
   @override

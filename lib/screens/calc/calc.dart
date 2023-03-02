@@ -27,6 +27,7 @@ class CalculatorApp extends StatelessWidget {
           body: BlocBuilder<CalcBlockCubit, CalcBlockState>(
             builder: (context, state) {
               return Container(
+
                   color: Colors.black54,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -39,7 +40,7 @@ class CalculatorApp extends StatelessWidget {
                             context.read<CalcBlockCubit>().history,
                             textAlign: TextAlign.end,
                             style: const TextStyle(
-                              fontSize: 26,
+                              fontSize: 24,
                             ),
                           ),
                         ),
@@ -277,7 +278,7 @@ class CalculatorApp extends StatelessWidget {
                               context.read<CalcBlockCubit>().addCalcController('');
                               context.read<CalcBlockCubit>().isClear = true;
 
-                              await Future.delayed(const Duration(seconds: 1));
+                              await Future.delayed(const Duration(seconds: 2));
                             },
                           ),
                         ],

@@ -132,12 +132,13 @@ class RegistrationState extends State<Registration> {
                     validator: (value) {
                       if (value!.isEmpty ||
                           !RegExp(r'^[0-9]+$').hasMatch(value)) {
-                      } else if (passwordController2.text !=
-                          passwordController.text) {
+                        return 'неправильный пароль';
+                      } else if (passwordController2.text != passwordController.text){
                         return 'пароли не совпадают';
-                      } else {
+                      }else {
                         return null;
                       }
+
                     },
                     controller: passwordController2,
                     keyboardType: TextInputType.number,
@@ -162,7 +163,6 @@ class RegistrationState extends State<Registration> {
                         )),
                   ),
                   HistoryButton(
-
                     text: 'REGISTRATION',
                     textSize: 15,
                     textColor: Colors.white,
@@ -170,13 +170,13 @@ class RegistrationState extends State<Registration> {
                       if (_formKey.currentState!.validate()) {
                         const snackBar =
                             SnackBar(content: Text('сохранение данных в базу'));
-                        const Duration(milliseconds: 500 );
+                        //const Duration(milliseconds: 500 );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                     Authorization()));
+                                     const Authorization()));
                         context.read<HistoryBlockCubit>().getOperationList();
                       } else {
                         const snackBar = SnackBar(

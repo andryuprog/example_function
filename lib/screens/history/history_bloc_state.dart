@@ -18,16 +18,16 @@ class HistoryBlocLoading extends HistoryBlockState {
 }
 
 class HistoryBlocDataBase extends HistoryBlockState {
-  List<HistoryDb> dataBaseList;
-  HistoryBlocDataBase(this.dataBaseList);
+  final List<HistoryDb> dataBaseList;
+  const HistoryBlocDataBase(this.dataBaseList);
   @override
   List<Object?> get props => [dataBaseList];
 }
 
 
 class HistoryBlocError extends HistoryBlockState {
-  String historyError;
-  HistoryBlocError(this.historyError);
+  final String historyError;
+  const HistoryBlocError(this.historyError);
   @override
   List<Object?> get props => [historyError];
 }

@@ -2,7 +2,8 @@
 import 'package:equatable/equatable.dart';
 
 abstract class HomeBlocState extends Equatable {
-   const HomeBlocState();
+  final bool ishuemae = false;
+    const HomeBlocState();
 }
 
 class HomeBlocInitial extends HomeBlocState {
@@ -15,16 +16,18 @@ class HomeBlocLoad extends HomeBlocState {
   List<Object?> get props => [];
 }
 
-class HomeBlocData extends HomeBlocState {
-   String? password;
-   String? name;
+class HomeBlocDataState extends HomeBlocState {
+  final String? password;
+  final String? name;
+   const HomeBlocDataState({this.password, this.name});
+
   @override
   List<Object?> get props => [password,name];
 }
 
 class EditorSee extends HomeBlocState {
-   bool hidePass = false;
-   EditorSee(this.hidePass);
+   final bool hidePass;
+   const EditorSee({this.hidePass = false});
   @override
   List<Object?> get props => [hidePass];
 
