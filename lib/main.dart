@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calculate/screens/home_page/authorization.dart';
-import 'package:my_calculate/screens/home_page/home_bloc_cubit.dart';
+import 'package:my_calculate/presentation/screens/calc/calc.dart';
+import 'package:my_calculate/presentation/screens/calc/calcBlockCubit.dart';
+import 'package:my_calculate/presentation/screens/history/history_block_cubit.dart';
+import 'package:my_calculate/presentation/screens/history/history_repository.dart';
+import 'package:my_calculate/presentation/screens/home_page/home_bloc_cubit.dart';
+import 'package:my_calculate/presentation/screens/home_page/home_repository.dart';
+import 'package:my_calculate/presentation/screens/home_page/registration.dart';
+import 'package:my_calculate/presentation/screens/weather/weather_block_cubit.dart';
+import 'package:my_calculate/presentation/screens/weather/weather_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'api/weather_dio_api.dart';
-import 'screens/calc/calcBlockCubit.dart';
-import 'screens/calc/calc.dart';
-import 'screens/history/history_block_cubit.dart';
-import 'screens/history/history_repository.dart';
-import 'screens/history/weather_block_cubit.dart';
-import 'screens/history/weather_repository.dart';
-import 'screens/home_page/home_repository.dart';
-import 'screens/home_page/registration.dart';
+
+import 'data/api/weather_dio_api.dart';
 
 
 void main() async {

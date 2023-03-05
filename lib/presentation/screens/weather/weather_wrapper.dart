@@ -1,0 +1,13 @@
+
+import 'package:my_calculate/presentation/screens/weather/weather_model.dart';
+
+
+class WeatherWrapper {
+  WeatherModel? objectWeather;
+  bool isProgress;
+  String? error;
+
+  WeatherWrapper({
+      this.objectWeather, required this.isProgress, this.error});
+
+}
