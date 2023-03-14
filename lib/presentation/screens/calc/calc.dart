@@ -25,7 +25,7 @@ class CalculatorApp extends StatelessWidget {
             title: const Text('my calculate'),
             centerTitle: true,
           ),
-          body: BlocBuilder<CalcBlockCubit, CalcBlockState>(
+          body: BlocBuilder<CalcBlocCubit, CalcBlocState>(
             builder: (context, state) {
               return Container(
                   color: Colors.black54,
@@ -37,7 +37,7 @@ class CalculatorApp extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 16),
                           child: Text(
-                            context.read<CalcBlockCubit>().history,
+                            context.read<CalcBlocCubit>().history,
                             textAlign: TextAlign.end,
                             style: const TextStyle(
                               fontSize: 24,
@@ -45,7 +45,7 @@ class CalculatorApp extends StatelessWidget {
                           ),
                         ),
                       ),
-                      BlocBuilder<CalcBlockCubit, CalcBlockState>(
+                      BlocBuilder<CalcBlocCubit, CalcBlocState>(
                           //stream: block.streamCalcController.stream,
                           //bloc: block,
                           builder: (context, state) {
@@ -75,9 +75,9 @@ class CalculatorApp extends StatelessWidget {
                             text: 'AC',
                             fillColor: Colors.red,
                             //  textColor: Colors.grey,
-                            textSize: 22,
+                            textSize: 20,
                             callback: () {
-                              context.read<CalcBlockCubit>().clearCalcController();
+                              context.read<CalcBlocCubit>().clearCalcController();
                             },
                           ),
                           CalculatorButton(
@@ -85,7 +85,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .clearCalcController();
                             },
                           ),
@@ -94,7 +94,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .clearOneCalcController();
                             },
                           ),
@@ -102,10 +102,10 @@ class CalculatorApp extends StatelessWidget {
                             text: '/',
                             textSize: 26,
                             callback: () {
-                              context.read<CalcBlockCubit>().divide(
-                                  context.read<CalcBlockCubit>().textToDisplay);
+                              context.read<CalcBlocCubit>().divide(
+                                  context.read<CalcBlocCubit>().textToDisplay);
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('');
                             },
                           ),
@@ -119,7 +119,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('9');
                               // block.textToDisplay = '9';
                             },
@@ -128,7 +128,7 @@ class CalculatorApp extends StatelessWidget {
                             text: '8',
                             textSize: 26,
                             callback: () {
-                              context.read<CalcBlockCubit>().addCalcController('8');
+                              context.read<CalcBlocCubit>().addCalcController('8');
                             },
                           ),
                           CalculatorButton(
@@ -136,7 +136,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('7');
                             },
                           ),
@@ -144,10 +144,10 @@ class CalculatorApp extends StatelessWidget {
                             text: '*',
                             textSize: 26,
                             callback: () {
-                              context.read<CalcBlockCubit>().multiply(
-                                  context.read<CalcBlockCubit>().textToDisplay);
+                              context.read<CalcBlocCubit>().multiply(
+                                  context.read<CalcBlocCubit>().textToDisplay);
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('');
                             },
                           ),
@@ -161,7 +161,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('6');
                             },
                           ),
@@ -170,7 +170,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('5');
                             },
                           ),
@@ -179,7 +179,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('4');
                             },
                           ),
@@ -187,10 +187,10 @@ class CalculatorApp extends StatelessWidget {
                             text: '-',
                             textSize: 26,
                             callback: () {
-                              context.read<CalcBlockCubit>().subtract(
-                                  context.read<CalcBlockCubit>().textToDisplay);
+                              context.read<CalcBlocCubit>().subtract(
+                                  context.read<CalcBlocCubit>().textToDisplay);
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('');
                             },
                           ),
@@ -204,7 +204,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('3');
                             },
                           ),
@@ -213,7 +213,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('2');
                             },
                           ),
@@ -222,7 +222,7 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('1');
                             },
                           ),
@@ -230,10 +230,10 @@ class CalculatorApp extends StatelessWidget {
                             text: '+',
                             textSize: 26,
                             callback: () {
-                              context.read<CalcBlockCubit>().plus(
-                                  context.read<CalcBlockCubit>().textToDisplay);
+                              context.read<CalcBlocCubit>().plus(
+                                  context.read<CalcBlocCubit>().textToDisplay);
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('');
                             },
                           ),
@@ -244,10 +244,10 @@ class CalculatorApp extends StatelessWidget {
                         children: [
                           CalculatorButton(
                             text: '+/-',
-                            textSize: 22,
+                            textSize: 20,
                             callback: () => {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .minusCalcController()
                             },
                           ),
@@ -256,16 +256,16 @@ class CalculatorApp extends StatelessWidget {
                             textSize: 26,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('0');
                             },
                           ),
                           CalculatorButton(
                             text: '00',
-                            textSize: 26,
+                            textSize: 22,
                             callback: () {
                               context
-                                  .read<CalcBlockCubit>()
+                                  .read<CalcBlocCubit>()
                                   .addCalcController('00');
                             },
                           ),
@@ -273,10 +273,10 @@ class CalculatorApp extends StatelessWidget {
                             text: '=',
                             textSize: 26,
                             callback: () async {
-                              context.read<CalcBlockCubit>().textToDisplay =
-                                  context.read<CalcBlockCubit>().calc(context.read<CalcBlockCubit>().textToDisplay);
-                              context.read<CalcBlockCubit>().addCalcController('');
-                              context.read<CalcBlockCubit>().isClear = true;
+                              context.read<CalcBlocCubit>().textToDisplay =
+                                  context.read<CalcBlocCubit>().calc(context.read<CalcBlocCubit>().textToDisplay);
+                              context.read<CalcBlocCubit>().addCalcController('');
+                              context.read<CalcBlocCubit>().isClear = true;
 
                               await Future.delayed(const Duration(seconds: 2));
                             },

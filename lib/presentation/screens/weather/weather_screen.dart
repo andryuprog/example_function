@@ -25,11 +25,8 @@ class HistoryPage extends StatelessWidget {
           child: Column(
             children: [
               Flexible(
-
-
                   flex: 30,
                   fit: FlexFit.loose,
-
                   child: ListView(
                     children: [
                       BlocBuilder<WeatherBlocCubit, WeatherBlocState>(
@@ -62,7 +59,6 @@ class HistoryPage extends StatelessWidget {
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-
                                         children:  [
                                         TempView(
                                         state.data.objectWeather!.date,
@@ -139,16 +135,16 @@ class HistoryPage extends StatelessWidget {
   static getChangeColor(operation) {
     if (operation != null) {
       if (operation.contains('-')) {
-        return const Color(0xFFB71C1C);
+        return const Color(0x929B2020);
       }
       if (operation.contains('+')) {
-        return const Color(0xFF2A850E);
+        return const Color(0x9230761A);
       }
       if (operation.contains('/')) {
-        return const Color(0xFF1B0DAC);
+        return const Color(0xA6271C92);
       }
       if (operation.contains('*')) {
-        return const Color(0xFFF38905);
+        return const Color(0xAFCA7D1D);
       }
     }
   }

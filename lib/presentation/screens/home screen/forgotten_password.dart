@@ -28,7 +28,7 @@ class Forgotten extends StatelessWidget {
           centerTitle: true,
         ),
         backgroundColor: Colors.black54,
-        body: BlocBuilder<CalcBlockCubit, CalcBlockState>(
+        body: BlocBuilder<CalcBlocCubit, CalcBlocState>(
           builder: (context, state) {
             return Form(
               child: Padding(

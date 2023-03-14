@@ -3,14 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_calculate/presentation/screens/calc/calc.dart';
 import 'package:my_calculate/presentation/screens/calc/calcBlockCubit.dart';
 import 'package:my_calculate/presentation/screens/history/history_block_cubit.dart';
-import 'package:my_calculate/presentation/screens/history/history_repository.dart';
-import 'package:my_calculate/presentation/screens/home_page/home_bloc_cubit.dart';
-import 'package:my_calculate/presentation/screens/home_page/home_repository.dart';
-import 'package:my_calculate/presentation/screens/home_page/registration.dart';
+import 'package:my_calculate/domain/repositories/history_repository.dart';
+import 'package:my_calculate/presentation/screens/home%20screen/authorization/authorization_bloc_cubit.dart';
+import 'package:my_calculate/presentation/screens/home%20screen/home/home_bloc_cubit.dart';
+import 'package:my_calculate/presentation/screens/home%20screen/registration/registration_bloc_cubit.dart';
+import 'package:my_calculate/domain/repositories/authorization_repository.dart';
+import 'package:my_calculate/presentation/screens/home%20screen/registration/registration_screen.dart';
 import 'package:my_calculate/presentation/screens/weather/weather_block_cubit.dart';
-import 'package:my_calculate/presentation/screens/weather/weather_repository.dart';
+import 'package:my_calculate/domain/repositories/weather_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'data/api/weather_dio_api.dart';
 
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           create: (context) => HistoryRepository(),
         ),
         RepositoryProvider(
-            create: (context) => HomeRepository(sharedPreferences),
+            create: (context) => AuthorizationRepository(sharedPreferences),
         ),
       ],
       child: MultiBlocProvider(
@@ -48,10 +49,13 @@ class MyApp extends StatelessWidget {
               HistoryBlockCubit(context.read<HistoryRepository>())),
           BlocProvider(
               create: (context) =>
-              CalcBlockCubit(context.read<HistoryRepository>())),
+              CalcBlocCubit(context.read<HistoryRepository>())),
           BlocProvider(
             create: (context) =>
-          HomeBlocCubit(context.read<HomeRepository>())),
+          RegistrationBlocCubit(context.read<AuthorizationRepository>())),
+          BlocProvider(
+              create: (context) =>
+              HomeBlocCubit(context.read<AuthorizationRepository>())),
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,

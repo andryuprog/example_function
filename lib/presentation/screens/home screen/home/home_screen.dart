@@ -1,12 +1,11 @@
 import 'package:colorful_progress_indicators/colorful_progress_indicators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calculate/presentation/screens/home%20screen/home_bloc_cubit.dart';
-import 'package:my_calculate/presentation/screens/home%20screen/home_bloc_state.dart';
+import 'package:my_calculate/presentation/screens/home%20screen/home/home_bloc_cubit.dart';
 import 'package:particles_flutter/component/painter.dart';
 import 'package:particles_flutter/particles_flutter.dart';
+import 'home_bloc_state.dart';
 
-import '../calc/calcBlockCubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: BlocBuilder<HomeBlocCubit, HomeBlocState>(
         builder: (context, state) {
-
           return Column(
             children: [
               CircularParticle(

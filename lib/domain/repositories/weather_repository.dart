@@ -1,6 +1,6 @@
 
-import '../../../data/api/weather_dio_api.dart';
-import '../../../data/model/weather_forecast_daily.dart';
+import '../../data/api/weather_dio_api.dart';
+import '../../data/model/weather_forecast_daily.dart';
 
 
 

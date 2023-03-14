@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../widgets/history_button.dart';
-import '../history/history_block_cubit.dart';
-import 'authorization_screen.dart';
+import '../../../widgets/history_button.dart';
+import '../../history/history_block_cubit.dart';
+import '../authorization/authorization_screen.dart';
 import 'registration_bloc_cubit.dart';
 import 'registration_bloc_state.dart';
 
@@ -167,13 +167,12 @@ class RegistrationState extends State<Registration> {
                       if (_formKey.currentState!.validate()) {
                         const snackBar =
                             SnackBar(content: Text('сохранение данных в базу'));
-                        //const Duration(milliseconds: 500 );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    const Authorization()));
+                                      const Authorization()));
                         context.read<HistoryBlockCubit>().getOperationList();
                       } else {
                         const snackBar = SnackBar(
@@ -181,15 +180,11 @@ class RegistrationState extends State<Registration> {
                             content: Text('ошибка ввода данных'));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
-                      context
-                          .read<RegistrationBlocCubit>()
-                          .addPa(passwordController.text);
-                      context
-                          .read<RegistrationBlocCubit>()
-                          .addNamePreferences(nameController.text);
-                      context.read<RegistrationBlocCubit>().passwordComparison(
-                          nameController.text, passwordController.text);
-                      //print(' все выглядит так...${context.read<HomeBlocCubit>().getPasswordPreferences()}');
+                      context.read<RegistrationBlocCubit>().save(nameController.text,passwordController.text);
+                    //  print('object //////${nameController.text} ${passwordController.text}');
+
+                      // context.read<RegistrationBlocCubit>().passwordComparison(
+                      //     nameController.text, passwordController.text);
                     },
                   ),
                 ],

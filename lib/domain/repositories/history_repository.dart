@@ -1,8 +1,8 @@
 
 import 'package:sqflite/sqflite.dart';
 
-import '../../../data/db/db_SQLite.dart';
-import '../../../data/model/history_db.dart';
+import '../../data/db/db_SQLite.dart';
+import '../../data/model/history_db.dart';
 
 class HistoryRepository{
 

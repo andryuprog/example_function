@@ -1,5 +1,5 @@
 
-import 'package:my_calculate/presentation/screens/weather/weather_model.dart';
+import 'package:my_calculate/domain/entities/weather_model.dart';
 
 
 class WeatherWrapper {

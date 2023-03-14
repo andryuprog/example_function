@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../data/model/history_db.dart';
 import 'history_bloc_state.dart';
-import 'history_repository.dart';
+import '../../../domain/repositories/history_repository.dart';
 
 // enum CalcEvent {
 //   addNumber,

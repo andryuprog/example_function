@@ -3,15 +3,15 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import '../../../data/model/history_db.dart';
-import '../history/history_repository.dart';
+import '../../../domain/repositories/history_repository.dart';
 
-abstract class CalcBlockState extends Equatable {
+abstract class CalcBlocState extends Equatable {
 }
-class CalcBlocInitial extends CalcBlockState {
+class CalcBlocInitial extends CalcBlocState {
   @override
   List<Object?> get props => [];
 }
-class CalcBlocData extends CalcBlockState {
+class CalcBlocData extends CalcBlocState {
   final String text;
   CalcBlocData(this.text);
 
@@ -19,8 +19,8 @@ class CalcBlocData extends CalcBlockState {
   List<Object?> get props => [text];
 }
 
-class CalcBlockCubit extends Cubit<CalcBlockState>{
-  CalcBlockCubit(this.historyRepository) : super(CalcBlocInitial());
+class CalcBlocCubit extends Cubit<CalcBlocState>{
+  CalcBlocCubit(this.historyRepository) : super(CalcBlocInitial());
 
   var firstValue = 0;
   var secondVal = 0;
