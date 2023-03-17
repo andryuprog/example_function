@@ -5,7 +5,9 @@ import 'package:my_calculate/presentation/screens/calc/calcBlockCubit.dart';
 import 'package:my_calculate/presentation/screens/history/history_block_cubit.dart';
 import 'package:my_calculate/domain/repositories/history_repository.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/authorization/authorization_bloc_cubit.dart';
+import 'package:my_calculate/presentation/screens/home%20screen/forgotten/forgotten_bloc_cubit.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/home/home_bloc_cubit.dart';
+import 'package:my_calculate/presentation/screens/home%20screen/home/home_screen.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/registration/registration_bloc_cubit.dart';
 import 'package:my_calculate/domain/repositories/authorization_repository.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/registration/registration_screen.dart';
@@ -55,7 +57,12 @@ class MyApp extends StatelessWidget {
           RegistrationBlocCubit(context.read<AuthorizationRepository>())),
           BlocProvider(
               create: (context) =>
-              HomeBlocCubit(context.read<AuthorizationRepository>())),
+              HomeBlocCubit(context.read<AuthorizationRepository>())..initial()),
+          BlocProvider(
+            create: (context) =>
+                ForgottenBlocCubit(context.read<AuthorizationRepository>()),
+          ),
+
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
@@ -67,7 +74,7 @@ class MyApp extends StatelessWidget {
             ),
             initialRoute: '/',
             routes: {
-              '/': (context) =>  const Registration(),
+              '/': (context) =>  const HomeScreen(),
               '/weather_screen': (context) => const CalculatorApp(),
             }),
       ),

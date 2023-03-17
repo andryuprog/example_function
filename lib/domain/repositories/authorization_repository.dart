@@ -30,8 +30,9 @@ class AuthorizationRepository {
      return sharedPreferences.getString(passwordPrefKey);// считывает данные с базы
   }
 
-  void deletePreferences(value) {
-    sharedPreferences.remove(removePrefKey);
+  Future deletePreferences() async {
+   await sharedPreferences.remove(namePrefKey);
+   await sharedPreferences.remove(passwordPrefKey);
   }
 
 

@@ -1,5 +1,5 @@
 
-import 'dart:math';
+
 
 import 'package:bloc/bloc.dart';
 import 'registration_bloc_state.dart';
@@ -13,10 +13,7 @@ class RegistrationBlocCubit extends Cubit<RegistrationBlocState> {
   void  save(String name, String password) {
     authorizationRepository.setNamePref(name);
     authorizationRepository.setPasswordPref(password);
-    String? name1 = authorizationRepository.getNamePref();
-    String? password1 = authorizationRepository.getPasswordPref();
     emit(const RegistrationBlocDataState());
-    print(' взято с базы.... ${name1} ${password1} ');
   }
 
 //   void  addNamePreferences (value) {

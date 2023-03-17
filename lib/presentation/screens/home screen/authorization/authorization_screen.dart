@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../domain/repositories/authorization_repository.dart';
 import '../../calc/calc.dart';
 import '../../../widgets/history_button.dart';
-import '../registration/registration_bloc_cubit.dart';
-import '../registration/registration_bloc_state.dart';
+import '../forgotten/forgotten_password.dart';
 import 'authorization_bloc_cubit.dart';
 import 'authorization_bloc_state.dart';
 
@@ -81,19 +80,24 @@ class _AuthorizationState extends State<Authorization> {
                     children: [
                       const SizedBox(height: 50),
                       TextFormField(
+
                         controller: nameConfirmController,
-                        // initialValue: nameConfirmController.text,
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                             labelText: 'Name *',
                             hintText: 'введите ваше имя',
-                            prefixIcon: Icon(Icons.person),
-                            enabledBorder: OutlineInputBorder(
+                            prefixIcon: const Icon(Icons.person),
+                            suffixIcon: GestureDetector(
+                                onTap: () {
+                                  nameConfirmController.clear();
+                                },
+                                child: const Icon(Icons.delete)),
+                            enabledBorder: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30)),
                               borderSide:
                                   BorderSide(color: Colors.white, width: 0.8),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(30)),
                               borderSide:
@@ -135,7 +139,13 @@ class _AuthorizationState extends State<Authorization> {
                       ),
                       const SizedBox(height: 10),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                                 context,
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                         const Forgotten()));
+                        },
                         child: const Text('Забыли пароль?'),
                       ),
                       HistoryButton(
@@ -143,17 +153,11 @@ class _AuthorizationState extends State<Authorization> {
                         textSize: 15,
                         textColor: Colors.white,
                         callback: () {
-                          // print(' вот это сейчас в контроллере....${namePref}');
                           if (_formKey.currentState!.validate()) {
                             context.read<AuthorizationBlocCubit>().checkFields(
                                 nameConfirmController.text,
                                 passwordConfirmController.text);
 
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (BuildContext context) =>
-                            //             const CalculatorApp()));
                           } else {
                             const snackBar = SnackBar(
                                 backgroundColor: Colors.red,

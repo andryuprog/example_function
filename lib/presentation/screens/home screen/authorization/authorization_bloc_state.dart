@@ -20,13 +20,13 @@ class AuthorizationBlocLoading extends AuthorizationState {
 }
 
 class AuthorizationBlocLoaded extends AuthorizationState {
-  const AuthorizationBlocLoaded(this.name, this.password, this.namePref);
+  const AuthorizationBlocLoaded(this.name, this.password);
   final String name;
   final String password;
-  final String namePref;
+
 
   @override
-  List<Object?> get props => [name,password,namePref];
+  List<Object?> get props => [name,password];
 }
 
 class InitializeFieldState extends AuthorizationState {

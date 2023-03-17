@@ -18,7 +18,7 @@ class AuthorizationBlocCubit extends Cubit<AuthorizationState> {
     name = authorizationRepository.getNamePref();
     pass = authorizationRepository.getPasswordPref();
     await Future.delayed(const Duration(seconds: 1));
-    log("init__$name, $pass");
+                                           // log("init__$name, $pass");
     if(name != null && pass != null) {
       emit(InitializeFieldState(name!));
     }

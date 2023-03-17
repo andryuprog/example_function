@@ -1,9 +1,10 @@
 import 'package:colorful_progress_indicators/colorful_progress_indicators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_calculate/presentation/screens/home%20screen/home/home_bloc_cubit.dart';
-import 'package:particles_flutter/component/painter.dart';
 import 'package:particles_flutter/particles_flutter.dart';
+import '../authorization/authorization_screen.dart';
+import '../registration/registration_screen.dart';
+import 'home_bloc_cubit.dart';
 import 'home_bloc_state.dart';
 
 
@@ -23,13 +24,29 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('welcome'),
         centerTitle: true,
       ),
-      body: BlocBuilder<HomeBlocCubit, HomeBlocState>(
-        builder: (context, state) {
-          return Column(
-            children: [
-              CircularParticle(
-                awayRadius: 100 / 3,
-                numberOfParticles: 350,
+      body:
+      BlocListener<HomeBlocCubit, HomeBlocState>(
+        listener: (context, state) {
+          if (state is HomeBlocLoading) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    const Authorization()));
+          } else if (state is HomeBlocAddRegistration){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                    const Registration()));
+          }
+        },
+        child: Column(
+          children: [
+            Expanded(
+              child: CircularParticle(
+                awayRadius: 200 / 3,
+                numberOfParticles: 250,
                 speedOfParticles: 1,
                 height: 700,
                 width: 700,
@@ -42,24 +59,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 awayAnimationCurve: Curves.easeInOutBack,
                 enableHover: true,
                 hoverColor: Colors.white,
-                hoverRadius: 70,
+                hoverRadius: 80,
                 connectDots: true,
               ),
-              const Center(
-                child: ColorfulLinearProgressIndicator(
-                  colors: [
-                    Colors.red,
-                    Colors.blue,
-                    Colors.purple,
-                    Colors.orange,
-                  ],
-                  duration: Duration(milliseconds: 500),
-                  initialColor: Colors.red,
-                ),
+            ),
+            const Center(
+              child: ColorfulLinearProgressIndicator(
+                colors: [
+                  Colors.red,
+                  Colors.blue,
+                  Colors.purple,
+                  Colors.orange,
+                ],
+                duration: Duration(milliseconds: 500),
+                initialColor: Colors.red,
               ),
-            ],
-          );
-        },
+            ),
+          ],
+        ),
       ),
     );
   }

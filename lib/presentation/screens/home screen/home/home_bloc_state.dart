@@ -11,11 +11,12 @@ class HomeBlocInitial extends HomeBlocState {
 }
 
 class HomeBlocLoading extends HomeBlocState {
+
   @override
   List<Object?> get props => [];
 }
 
-class HomeBlocData extends HomeBlocState {
+class HomeBlocAddRegistration extends HomeBlocState {
   @override
   List<Object?> get props => [];
 }
