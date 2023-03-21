@@ -14,7 +14,7 @@ class HomeBlocCubit extends Cubit<HomeBlocState> {
   initial() async {
     nameAuthorization = authorizationRepository.getNamePref();
     passAuthorization = authorizationRepository.getPasswordPref();
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 5));
                                                                  // log("init__$name, $pass");
     if(nameAuthorization != null && passAuthorization != null) {
       emit(HomeBlocLoading());
