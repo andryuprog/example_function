@@ -1,6 +1,5 @@
 
 import 'package:equatable/equatable.dart';
-
 import '../../../data/model/history_db.dart';
 
 

@@ -10,7 +10,6 @@ import 'package:my_calculate/presentation/screens/home%20screen/home/home_bloc_c
 import 'package:my_calculate/presentation/screens/home%20screen/home/home_screen.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/registration/registration_bloc_cubit.dart';
 import 'package:my_calculate/domain/repositories/authorization_repository.dart';
-import 'package:my_calculate/presentation/screens/home%20screen/registration/registration_screen.dart';
 import 'package:my_calculate/presentation/screens/weather/weather_block_cubit.dart';
 import 'package:my_calculate/domain/repositories/weather_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';

@@ -8,6 +8,7 @@ class WeatherApi {
 
   Future<WeatherForecast> fetchWeatherForecastWithCity(
       {required String cityName}) async {
+
     var queryParameters = {
       'APPID': Constants.WEATHER_APP_ID,
       'units': 'metric',

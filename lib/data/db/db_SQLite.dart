@@ -34,8 +34,4 @@ class DBProvider {
         '''CREATE TABLE $operationTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $operationRes TEXT,$columnTime TEXT)''');
   }
 
-
-
-
-
 }
