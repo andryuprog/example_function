@@ -10,8 +10,6 @@ import 'weather_block_cubit.dart';
 class HistoryPage extends StatelessWidget {
   const HistoryPage({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,11 +58,11 @@ class HistoryPage extends StatelessWidget {
                                         mainAxisSize: MainAxisSize.min,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children:  [
-                                        TempView(
-                                        state.data.objectWeather!.date,
-                                          state.data.objectWeather!,
-                                           ),
+                                        children: [
+                                          TempView(
+                                            state.data.objectWeather!.date,
+                                            state.data.objectWeather!,
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -84,47 +82,50 @@ class HistoryPage extends StatelessWidget {
                   )),
               Expanded(
                 flex: 70,
-                child:BlocBuilder<HistoryBlockCubit, HistoryBlockState>(
+                child: BlocBuilder<HistoryBlockCubit, HistoryBlockState>(
                     builder: (context, state) {
-                      if (state is HistoryBlocLoading) {
-                         const SpinKitSpinningLines(color: Colors.white, size: 40.0);}
-                      if (state is HistoryBlocDataBase) {
-                        return ListView.builder(
-                          padding: const EdgeInsets.all(10.0),
-                          itemCount: state.dataBaseList.length,
-                          itemBuilder: (context, index) => Card(
-                            color:
-                                getChangeColor(state.dataBaseList[index].operation),
-                            elevation: 20,
-                            shadowColor: getChangeColor(state.dataBaseList[index].operation),
-                            margin: const EdgeInsets.symmetric(vertical: 10),
-                            child: ListTile(
-                              title: Text(
-                                "${state.dataBaseList[index].time}",
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                              subtitle: Text(
-                                "${state.dataBaseList[index].operation}",
-                              ),
-                              leading: const Icon(
-                                Icons.access_alarm_outlined,
-                                size: 36,
-                                color: Colors.white,
-                              ),
-                              trailing: IconButton(
-                                icon: const Icon(Icons.delete, size: 36),
-                                onPressed: () {
-                                  context.read<HistoryBlockCubit>().dell(state.dataBaseList[index].id);
-                                },
-                              ),
-                              onTap: () {},
-                            ),
+                  if (state is HistoryBlocLoading) {
+                    const SpinKitSpinningLines(color: Colors.white, size: 40.0);
+                  }
+                  if (state is HistoryBlocDataBase) {
+                    return ListView.builder(
+                      padding: const EdgeInsets.all(10.0),
+                      itemCount: state.dataBaseList.length,
+                      itemBuilder: (context, index) => Card(
+                        color:
+                            getChangeColor(state.dataBaseList[index].operation),
+                        elevation: 20,
+                        shadowColor:
+                            getChangeColor(state.dataBaseList[index].operation),
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        child: ListTile(
+                          title: Text(
+                            "${state.dataBaseList[index].time}",
+                            style: const TextStyle(fontSize: 16),
                           ),
-                        );
-
-                      }
-                      return Container();
-                    }),
+                          subtitle: Text(
+                            "${state.dataBaseList[index].operation}",
+                          ),
+                          leading: const Icon(
+                            Icons.access_alarm_outlined,
+                            size: 36,
+                            color: Colors.white,
+                          ),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete, size: 36),
+                            onPressed: () {
+                              context
+                                  .read<HistoryBlockCubit>()
+                                  .dell(state.dataBaseList[index].id);
+                            },
+                          ),
+                          onTap: () {},
+                        ),
+                      ),
+                    );
+                  }
+                  return Container();
+                }),
               ),
             ],
           ),

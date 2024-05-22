@@ -1,28 +1,25 @@
-
 import 'package:sqflite/sqflite.dart';
 import '../../data/db/db_SQLite.dart';
 import '../../data/model/history_db.dart';
 
-class HistoryRepository{
-
-
+class HistoryRepository {
   //READ
   Future<List<HistoryDb>> getOperationDb() async {
     Database db = await DBProvider.db.database;
     final List<Map<String, dynamic>> operationMapList =
-    await db.query(DBProvider.db.operationTable);
+        await db.query(DBProvider.db.operationTable);
     final List<HistoryDb> operationList = [];
     for (var operationMap in operationMapList) {
       operationList.add(HistoryDb.fromMap(operationMap));
     }
     return operationList;
-
   }
 
   // INSERT
   Future<HistoryDb> insertOperationDb(HistoryDb operation) async {
     Database db = await DBProvider.db.database;
-    operation.id = await db.insert(DBProvider.db.operationTable, operation.toMap());
+    operation.id =
+        await db.insert(DBProvider.db.operationTable, operation.toMap());
     return operation;
   }
 
@@ -40,7 +37,7 @@ class HistoryRepository{
 
 //DELETE
 
- Future<int> deleteOperationDb(int id) async {
+  Future<int> deleteOperationDb(int id) async {
     Database db = await DBProvider.db.database;
     return await db.delete(
       DBProvider.db.operationTable,

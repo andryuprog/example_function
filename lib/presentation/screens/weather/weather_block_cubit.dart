@@ -8,21 +8,19 @@ import 'weather_bloc_state.dart';
 import 'weather_wrapper.dart';
 
 class WeatherBlocCubit extends Cubit<WeatherBlocState> {
-  WeatherBlocCubit(this.weatherRepository) : super(WeatherBlocInitial()){
+  WeatherBlocCubit(this.weatherRepository) : super(WeatherBlocInitial()) {
     getWeatherObject();
   }
 
   final WeatherRepository weatherRepository;
-
-
 
   Future<void> getWeatherObject() async {
     emit(LoadingState());
 
     try {
       WeatherForecast result = await weatherRepository.forecastObject();
-      DateTime formattedDate = DateTime.fromMillisecondsSinceEpoch(
-          result.list![0].dt! * 1000);
+      DateTime formattedDate =
+          DateTime.fromMillisecondsSinceEpoch(result.list![0].dt! * 1000);
       String date = Util.getFormattedDate(formattedDate);
       WeatherModel model = WeatherModel(
           city: result.city?.name ?? '',
@@ -35,8 +33,7 @@ class WeatherBlocCubit extends Cubit<WeatherBlocState> {
         objectWeather: model,
       )));
     } catch (e) {
-      emit(ErrorState(e.toString()
-      ));
+      emit(ErrorState(e.toString()));
     }
   }
 }
@@ -46,6 +43,3 @@ class Util {
     return DateFormat('EEE, MMM d, y').format(dateTime);
   }
 }
-
-
-

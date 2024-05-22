@@ -1,10 +1,11 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+
 class DBProvider {
   DBProvider._();
 
-  static final  DBProvider db = DBProvider._();
+  static final DBProvider db = DBProvider._();
 
   static Database? _database;
 
@@ -33,5 +34,4 @@ class DBProvider {
     await db.execute(
         '''CREATE TABLE $operationTable($columnId INTEGER PRIMARY KEY AUTOINCREMENT, $operationRes TEXT,$columnTime TEXT)''');
   }
-
 }

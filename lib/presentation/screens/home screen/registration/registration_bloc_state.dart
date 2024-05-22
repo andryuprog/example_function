@@ -1,8 +1,7 @@
-
 import 'package:equatable/equatable.dart';
 
 abstract class RegistrationBlocState extends Equatable {
-    const RegistrationBlocState();
+  const RegistrationBlocState();
 }
 
 class RegistrationBlocInitial extends RegistrationBlocState {
@@ -18,16 +17,18 @@ class RegistrationBlocLoad extends RegistrationBlocState {
 class RegistrationBlocDataState extends RegistrationBlocState {
   final String? password;
   final String? name;
-   const RegistrationBlocDataState({this.password, this.name});
+
+  const RegistrationBlocDataState({this.password, this.name});
 
   @override
-  List<Object?> get props => [password,name];
+  List<Object?> get props => [password, name];
 }
 
 class EditorSee extends RegistrationBlocState {
-   final bool hidePass;
-   const EditorSee({this.hidePass = false});
+  final bool hidePass;
+
+  const EditorSee({this.hidePass = false});
+
   @override
   List<Object?> get props => [hidePass];
-
 }

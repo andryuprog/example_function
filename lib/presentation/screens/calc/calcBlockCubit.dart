@@ -1,25 +1,26 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import '../../../data/model/history_db.dart';
 import '../../../data/repositories/history_repository.dart';
 
-abstract class CalcBlocState extends Equatable {
-}
+abstract class CalcBlocState extends Equatable {}
+
 class CalcBlocInitial extends CalcBlocState {
   @override
   List<Object?> get props => [];
 }
+
 class CalcBlocData extends CalcBlocState {
   final String text;
+
   CalcBlocData(this.text);
 
   @override
   List<Object?> get props => [text];
 }
 
-class CalcBlocCubit extends Cubit<CalcBlocState>{
+class CalcBlocCubit extends Cubit<CalcBlocState> {
   CalcBlocCubit(this.historyRepository) : super(CalcBlocInitial());
 
   var firstValue = 0;
@@ -40,17 +41,17 @@ class CalcBlocCubit extends Cubit<CalcBlocState>{
     } else {
       textToDisplay = ("-$textToDisplay");
     }
-      emit(CalcBlocData(textToDisplay));
+    emit(CalcBlocData(textToDisplay));
   }
 
   void addCalcController(String val) {
-    if (isClear){
-      textToDisplay ='';
+    if (isClear) {
+      textToDisplay = '';
       history = '';
       isClear = false;
     }
     textToDisplay = textToDisplay + val;
-      emit(CalcBlocData(textToDisplay));
+    emit(CalcBlocData(textToDisplay));
   }
 
   void clearCalcController() {
@@ -84,7 +85,7 @@ class CalcBlocCubit extends Cubit<CalcBlocState>{
     firstValue = int.parse(firstVal);
     textToDisplay = '';
     emit(CalcBlocData(textToDisplay));
-   // streamCalcController.sink.add(textToDisplay);
+    // streamCalcController.sink.add(textToDisplay);
   }
 
   void divide(firstVal) {

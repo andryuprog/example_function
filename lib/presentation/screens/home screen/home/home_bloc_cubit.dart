@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import '../../../../data/repositories/authorization_repository.dart';
 import 'home_bloc_state.dart';
@@ -7,7 +6,6 @@ class HomeBlocCubit extends Cubit<HomeBlocState> {
   String? nameAuthorization;
   String? passAuthorization;
 
-
   HomeBlocCubit(this.authorizationRepository) : super(HomeBlocInitial());
   AuthorizationRepository authorizationRepository;
 
@@ -15,22 +13,20 @@ class HomeBlocCubit extends Cubit<HomeBlocState> {
     nameAuthorization = authorizationRepository.getNamePref();
     passAuthorization = authorizationRepository.getPasswordPref();
     await Future.delayed(const Duration(seconds: 5));
-                                                                 // log("init__$name, $pass");
-    if(nameAuthorization != null && passAuthorization != null) {
+    // log("init__$name, $pass");
+    if (nameAuthorization != null && passAuthorization != null) {
       emit(HomeBlocLoading());
-    }else {
+    } else {
       emit(HomeBlocAddRegistration());
     }
   }
 
-
   void examination(String nameExamination, String passwordExamination) {
-
-    if (nameExamination == nameAuthorization && passwordExamination == passAuthorization){
+    if (nameExamination == nameAuthorization &&
+        passwordExamination == passAuthorization) {
       emit(HomeBlocAddRegistration());
-    }else{
+    } else {
       emit(HomeBlocError());
     }
   }
-
 }

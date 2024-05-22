@@ -1,12 +1,12 @@
 
+
 class HistoryDb {
   int? id;
   String? operation;
   String? time;
   bool isProgress = false;
 
-  HistoryDb({this.id, this.operation, this.time, required this.isProgress
-  });
+  HistoryDb({this.id, this.operation, this.time, required this.isProgress});
 
   Map<String, dynamic> toMap() {
     final map = <String, dynamic>{};

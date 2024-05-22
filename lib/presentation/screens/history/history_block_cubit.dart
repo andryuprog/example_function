@@ -4,13 +4,9 @@ import '../../../data/model/history_db.dart';
 import '../../../data/repositories/history_repository.dart';
 import 'history_bloc_state.dart';
 
-// enum CalcEvent {
-//   addNumber,
-//   delEvent,
-// }
 
-class HistoryBlockCubit extends Cubit<HistoryBlockState>{
-  HistoryBlockCubit(this.historyRepository) : super (HistoryBlocInitial()){
+class HistoryBlockCubit extends Cubit<HistoryBlockState> {
+  HistoryBlockCubit(this.historyRepository) : super(HistoryBlocInitial()) {
     getOperationList();
   }
 

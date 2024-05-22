@@ -172,7 +172,7 @@ class RegistrationState extends State<Registration> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                      const Authorization()));
+                                    const Authorization()));
                         context.read<HistoryBlockCubit>().getOperationList();
                       } else {
                         const snackBar = SnackBar(
@@ -180,8 +180,10 @@ class RegistrationState extends State<Registration> {
                             content: Text('ошибка ввода данных'));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }
-                      context.read<RegistrationBlocCubit>().save(nameController.text,passwordController.text);
-                    //  print('object //////${nameController.text} ${passwordController.text}');
+                      context
+                          .read<RegistrationBlocCubit>()
+                          .save(nameController.text, passwordController.text);
+                      //  print('object //////${nameController.text} ${passwordController.text}');
 
                       // context.read<RegistrationBlocCubit>().passwordComparison(
                       //     nameController.text, passwordController.text);

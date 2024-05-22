@@ -9,10 +9,8 @@ class ForgottenBlocCubit extends Cubit<ForgottenState> {
 
   AuthorizationRepository authorizationRepository;
 
-
-  void  addEditPassword(String password) {
+  void addEditPassword(String password) {
     authorizationRepository.setPasswordPref(password);
     emit(const ForgottenLoadedState());
   }
-
 }

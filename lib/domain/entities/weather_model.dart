@@ -1,4 +1,3 @@
-
 class WeatherModel {
   String city;
   String country;
@@ -6,11 +5,10 @@ class WeatherModel {
   String date;
   String icon;
 
-  WeatherModel ({
-    required this.city,
-    required this.country,
-    required this.temp,
-    required this.date,
-    required this.icon});
-
+  WeatherModel(
+      {required this.city,
+      required this.country,
+      required this.temp,
+      required this.date,
+      required this.icon});
 }

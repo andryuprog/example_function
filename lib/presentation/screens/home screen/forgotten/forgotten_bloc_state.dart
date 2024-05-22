@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 abstract class ForgottenState extends Equatable {
@@ -6,7 +5,6 @@ abstract class ForgottenState extends Equatable {
 }
 
 class ForgottenInitialState extends ForgottenState {
-
   const ForgottenInitialState();
 
   @override
@@ -16,7 +14,6 @@ class ForgottenInitialState extends ForgottenState {
 class ForgottenLoadedState extends ForgottenState {
   const ForgottenLoadedState();
 
-
   @override
-  List<Object?> get props =>  [];
+  List<Object?> get props => [];
 }

@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 abstract class AuthorizationState extends Equatable {
@@ -21,12 +20,12 @@ class AuthorizationBlocLoading extends AuthorizationState {
 
 class AuthorizationBlocLoaded extends AuthorizationState {
   const AuthorizationBlocLoaded(this.name, this.password);
+
   final String name;
   final String password;
 
-
   @override
-  List<Object?> get props => [name,password];
+  List<Object?> get props => [name, password];
 }
 
 class InitializeFieldState extends AuthorizationState {
@@ -40,6 +39,7 @@ class InitializeFieldState extends AuthorizationState {
 
 class AuthorizationBlocConfirm extends AuthorizationState {
   const AuthorizationBlocConfirm();
+
   @override
   List<Object?> get props => [];
 }
@@ -50,4 +50,3 @@ class AuthorizationBlocError extends AuthorizationState {
   @override
   List<Object?> get props => [];
 }
-

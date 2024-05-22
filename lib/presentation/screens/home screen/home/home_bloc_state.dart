@@ -1,4 +1,3 @@
-
 import 'package:equatable/equatable.dart';
 
 abstract class HomeBlocState extends Equatable {
@@ -11,7 +10,6 @@ class HomeBlocInitial extends HomeBlocState {
 }
 
 class HomeBlocLoading extends HomeBlocState {
-
   @override
   List<Object?> get props => [];
 }
@@ -25,4 +23,3 @@ class HomeBlocError extends HomeBlocState {
   @override
   List<Object?> get props => [];
 }
-
