@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:my_calculate/data/utilities/constants.dart';
 import 'package:my_calculate/presentation/screens/calc/calc.dart';
 import 'package:my_calculate/presentation/screens/calc/calcBlockCubit.dart';
 import 'package:my_calculate/presentation/screens/history/history_block_cubit.dart';
@@ -17,6 +19,8 @@ import 'data/repositories/weather_repository.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  await dotenv.load(fileName: ".env");
+  Constants.loadEnv();
   runApp(MyApp(sharedPreferences: sharedPreferences));
 }
 

@@ -1,1 +1,0 @@
- D:\\Android\\Studio\ Project\\calculate_weather_stream\\.dart_tool\\flutter_build\\e81450d61976bb9b5eb25c2860da3e44\\native_assets.yaml: 
