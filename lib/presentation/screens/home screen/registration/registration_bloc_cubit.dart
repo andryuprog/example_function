@@ -2,8 +2,8 @@
 
 
 import 'package:bloc/bloc.dart';
+import '../../../../data/repositories/authorization_repository.dart';
 import 'registration_bloc_state.dart';
-import '../../../../domain/repositories/authorization_repository.dart';
 
 
 class RegistrationBlocCubit extends Cubit<RegistrationBlocState> {

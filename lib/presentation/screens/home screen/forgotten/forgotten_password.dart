@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/forgotten/forgotten_bloc_cubit.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/forgotten/forgotten_bloc_state.dart';
-import '../../../../domain/repositories/authorization_repository.dart';
-import '../../calc/calcBlockCubit.dart';
+
+import '../../../../data/repositories/authorization_repository.dart';
 import '../../../widgets/history_button.dart';
-import '../../history/history_block_cubit.dart';
-import '../authorization/authorization_bloc_cubit.dart';
 import '../authorization/authorization_screen.dart';
 import '../registration/registration_screen.dart';
 
@@ -36,21 +34,12 @@ class _ForgottenState extends State<Forgotten> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'my calculate',
-      theme: ThemeData(
-        colorScheme: const ColorScheme.dark(
-          primary: Colors.white,
-          secondary: Colors.black87,
-        ),
-      ),
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text('password recovery'),
           centerTitle: true,
         ),
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.black87,
         body: BlocBuilder<ForgottenBlocCubit, ForgottenState>(
           builder: (context, state) {
             return Form(
@@ -163,7 +152,7 @@ class _ForgottenState extends State<Forgotten> {
             );
           },
         ),
-      ),
-    );
+      );
+
   }
 }

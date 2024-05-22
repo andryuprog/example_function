@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 
-import '../../../../domain/repositories/authorization_repository.dart';
+import '../../../../data/repositories/authorization_repository.dart';
 import 'forgotten_bloc_state.dart';
 
 class ForgottenBlocCubit extends Cubit<ForgottenState> {

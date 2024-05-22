@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import '../../../data/model/history_db.dart';
-import '../../../domain/repositories/history_repository.dart';
+import '../../../data/repositories/history_repository.dart';
 
 abstract class CalcBlocState extends Equatable {
 }

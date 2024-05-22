@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         controller.reverse();
 
       }else if(controller.status == AnimationStatus.dismissed) {
-        controller.forward(); // если стоит reaped(), то этот участок кода ненужен
+        controller.forward();
       }
     });
     super.initState();
@@ -54,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     return Scaffold(
       backgroundColor: Colors.black87,
       appBar: AppBar(
+        backgroundColor: Colors.black87,
         title: const Text('welcome'),
         centerTitle: true,
       ),
@@ -95,6 +96,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
     );
   }
 }
+
+
 class _MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -116,7 +119,6 @@ class _MyPainter extends CustomPainter {
     // paintLeft.style = PaintingStyle.stroke;
     // paintLeft.strokeWidth = 12;
     // canvas.drawCircle(Offset(size.width /2, size.height / 2), 30, paintLeft);
-
 
 
   }

@@ -1,10 +1,11 @@
-import 'dart:developer';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../domain/repositories/authorization_repository.dart';
-import '../../calc/calc.dart';
+
+import '../../../../data/repositories/authorization_repository.dart';
 import '../../../widgets/history_button.dart';
+import '../../calc/calc.dart';
 import '../forgotten/forgotten_password.dart';
 import 'authorization_bloc_cubit.dart';
 import 'authorization_bloc_state.dart';
@@ -32,17 +33,9 @@ class _AuthorizationState extends State<Authorization> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'my calculate',
-      theme: ThemeData(
-        colorScheme: const ColorScheme.dark(
-          primary: Colors.white,
-          secondary: Colors.black87,
-        ),
-      ),
-      home: Scaffold(
+    return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.black87,
             title: const Text('authorization'),
             centerTitle: true,
           ),
@@ -83,6 +76,7 @@ class _AuthorizationState extends State<Authorization> {
 
                         controller: nameConfirmController,
                         decoration:  InputDecoration(
+                          labelStyle: const TextStyle(color: Colors.white),
                             labelText: 'Name *',
                             hintText: 'введите ваше имя',
                             prefixIcon: const Icon(Icons.person),
@@ -118,6 +112,7 @@ class _AuthorizationState extends State<Authorization> {
                         obscureText: true,
                         controller: passwordConfirmController,
                         decoration: InputDecoration(
+                            labelStyle: const TextStyle(color: Colors.white),
                             labelText: 'Password *',
                             hintText: 'введите пароль',
                             prefixIcon: const Icon(Icons.security),
@@ -146,7 +141,7 @@ class _AuthorizationState extends State<Authorization> {
                                       builder: (BuildContext context) =>
                                          const Forgotten()));
                         },
-                        child: const Text('Забыли пароль?'),
+                        child: const Text('Забыли пароль?',style: TextStyle(color: Colors.white),),
                       ),
                       HistoryButton(
                         text: 'AUTHORIZATION',
@@ -172,8 +167,8 @@ class _AuthorizationState extends State<Authorization> {
                 ),
               );
             }),
-          )),
-    );
+          ));
+
   }
 
   void _goin() {

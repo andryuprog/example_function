@@ -16,6 +16,7 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black87,
         title: const Text('database & weather'),
         centerTitle: true,
       ),
@@ -135,16 +136,16 @@ class HistoryPage extends StatelessWidget {
   static getChangeColor(operation) {
     if (operation != null) {
       if (operation.contains('-')) {
-        return const Color(0x929B2020);
+        return const Color(0xFFE30202);
       }
       if (operation.contains('+')) {
-        return const Color(0x9230761A);
+        return const Color(0xFF229B00);
       }
       if (operation.contains('/')) {
-        return const Color(0xA6271C92);
+        return const Color(0xFF1500DE);
       }
       if (operation.contains('*')) {
-        return const Color(0xAFCA7D1D);
+        return const Color(0xFCFA008E);
       }
     }
   }

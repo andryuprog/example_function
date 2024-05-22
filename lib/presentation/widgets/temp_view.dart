@@ -1,35 +1,23 @@
 import 'package:flutter/material.dart';
 import '../../domain/entities/weather_model.dart';
 
-
-
-// ignore: must_be_immutable
 class TempView extends StatelessWidget {
+  final String date;
+  final WeatherModel model;
 
-  String date;
-  WeatherModel model;
-
-   TempView( this.date, this.model, {super.key});
-
-
+  const TempView(this.date, this.model, {super.key});
 
   @override
   Widget build(BuildContext context) {
-
-
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.network(model.icon, scale: 0.6),
           ],
         ),
         const SizedBox(height: 10.0),
         Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
-
           children: <Widget>[
             Text(
               '${model.temp}°C',

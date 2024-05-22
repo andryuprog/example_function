@@ -1,9 +1,7 @@
 
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:my_calculate/presentation/screens/home%20screen/authorization/authorization_bloc_state.dart';
-import '../../../../domain/repositories/authorization_repository.dart';
+import '../../../../data/repositories/authorization_repository.dart';
 
 
 class AuthorizationBlocCubit extends Cubit<AuthorizationState> {

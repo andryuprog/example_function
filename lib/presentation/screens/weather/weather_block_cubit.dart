@@ -3,8 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:my_calculate/domain/entities/weather_model.dart';
 import '../../../data/model/weather_forecast_daily.dart';
+import '../../../data/repositories/weather_repository.dart';
 import 'weather_bloc_state.dart';
-import '../../../domain/repositories/weather_repository.dart';
 import 'weather_wrapper.dart';
 
 class WeatherBlocCubit extends Cubit<WeatherBlocState> {

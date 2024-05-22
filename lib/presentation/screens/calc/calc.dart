@@ -11,17 +11,10 @@ class CalculatorApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'my calculate',
-      theme: ThemeData(
-        colorScheme: const ColorScheme.dark(
-          secondary: Colors.black87,
-        ),
-      ),
-      home: Scaffold(
+    return Scaffold(
         resizeToAvoidBottomInset: false,
           appBar: AppBar(
+            backgroundColor: Colors.black87,
             title: const Text('my calculate'),
             centerTitle: true,
           ),
@@ -35,7 +28,7 @@ class CalculatorApp extends StatelessWidget {
                       Container(
                         alignment: const Alignment(1.0, 1.0),
                         child: Padding(
-                          padding: const EdgeInsets.only(right: 16),
+                          padding: const EdgeInsets.only(right: 16.0),
                           child: Text(
                             context.read<CalcBlocCubit>().history,
                             textAlign: TextAlign.end,
@@ -298,7 +291,7 @@ class CalculatorApp extends StatelessWidget {
                     ],
                   ));
             },
-          )),
-    );
+          ));
+    // );
   }
 }
