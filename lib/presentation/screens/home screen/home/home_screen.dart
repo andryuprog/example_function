@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   void initState() {
     controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 8000));
+        vsync: this, duration: const Duration(milliseconds: 2000));
     rotation = Tween(begin: 0.0, end: 5 * 2 * pi).animate(
       CurvedAnimation(parent: controller, curve: Curves.easeInOutSine),
     );

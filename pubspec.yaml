@@ -12,15 +12,12 @@ dependencies:
   flutter_spinkit: ^5.1.0
   intl: ^0.18.0
   json_annotation: ^4.7.0
-  bloc: ^8.1.0
   flutter_bloc: ^8.1.1
   equatable: ^2.0.5
   shared_preferences: ^2.0.17
   dio: ^5.0.0
   flutter:
     sdk: flutter
-  colorful_progress_indicators: ^1.0.2
-  particles_flutter: ^0.1.4
   flutter_dotenv: ^5.1.0
 
 

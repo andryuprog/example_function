@@ -116,12 +116,6 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "colorful_progress_indicators",
-      "rootUri": "file:///C:/Users/andry/AppData/Local/Pub/Cache/hosted/pub.dev/colorful_progress_indicators-1.0.2",
-      "packageUri": "lib/",
-      "languageVersion": "2.18"
-    },
-    {
       "name": "convert",
       "rootUri": "file:///C:/Users/andry/AppData/Local/Pub/Cache/hosted/pub.dev/convert-3.1.1",
       "packageUri": "lib/",
@@ -348,12 +342,6 @@
       "rootUri": "file:///C:/Users/andry/AppData/Local/Pub/Cache/hosted/pub.dev/package_config-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
-    },
-    {
-      "name": "particles_flutter",
-      "rootUri": "file:///C:/Users/andry/AppData/Local/Pub/Cache/hosted/pub.dev/particles_flutter-0.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.13"
     },
     {
       "name": "path",
@@ -632,7 +620,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2024-05-22T20:50:20.647310Z",
+  "generated": "2024-05-22T21:50:25.430151Z",
   "generator": "pub",
   "generatorVersion": "3.4.0",
   "flutterRoot": "file:///D:/flutter",

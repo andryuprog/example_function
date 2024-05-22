@@ -42,6 +42,7 @@ class RegistrationState extends State<Registration> {
       ),
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor:Colors.black87,
           title: const Text('registration'),
           centerTitle: true,
         ),

@@ -56,7 +56,7 @@ class _AuthorizationState extends State<Authorization> {
             } else if (state is AuthorizationBlocError) {
               const snackBar = SnackBar(
                   backgroundColor: Colors.red,
-                  content: Text('ошибка ввода данных'));
+                  content: Text('data entry error'));
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }
           }, builder: (context, state) {
@@ -73,7 +73,7 @@ class _AuthorizationState extends State<Authorization> {
                       decoration: InputDecoration(
                           labelStyle: const TextStyle(color: Colors.white),
                           labelText: 'Name *',
-                          hintText: 'введите ваше имя',
+                          hintText: 'Enter your name',
                           prefixIcon: const Icon(Icons.person),
                           suffixIcon: GestureDetector(
                               onTap: () {
@@ -96,7 +96,7 @@ class _AuthorizationState extends State<Authorization> {
                       validator: (value) {
                         if (value!.isEmpty ||
                             !RegExp(r'^\d+$').hasMatch(value)) {
-                          return 'неправильные символы';
+                          return 'incorrect characters';
                         } else {
                           return null;
                         }
@@ -107,7 +107,7 @@ class _AuthorizationState extends State<Authorization> {
                       decoration: InputDecoration(
                           labelStyle: const TextStyle(color: Colors.white),
                           labelText: 'Password *',
-                          hintText: 'введите пароль',
+                          hintText: 'enter password',
                           prefixIcon: const Icon(Icons.security),
                           suffixIcon: IconButton(
                               onPressed: () {},
@@ -133,7 +133,7 @@ class _AuthorizationState extends State<Authorization> {
                                     const Forgotten()));
                       },
                       child: const Text(
-                        'Забыли пароль?',
+                        'Forgot your password?',
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
@@ -149,7 +149,7 @@ class _AuthorizationState extends State<Authorization> {
                         } else {
                           const snackBar = SnackBar(
                               backgroundColor: Colors.red,
-                              content: Text('ошибка ввода данных'));
+                              content: Text('data entry error'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       },
